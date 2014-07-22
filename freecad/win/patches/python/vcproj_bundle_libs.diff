@@ -1,0 +1,678 @@
+--- python-2.7.7/PCbuild/_hashlib.vcproj	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/_hashlib.vcproj	Wed Jul 16 20:58:32 2014
+@@ -26,10 +26,6 @@
+ 			CharacterSet="0"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -43,7 +39,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -57,7 +53,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -88,10 +85,6 @@
+ 			CharacterSet="0"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -106,7 +99,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -120,7 +113,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -152,10 +146,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -169,7 +159,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -183,7 +173,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -215,10 +206,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -233,7 +220,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -247,7 +234,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -279,10 +267,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -296,7 +280,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -310,7 +294,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -342,10 +327,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -360,7 +341,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -374,8 +355,9 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
+ 				TargetMachine="17"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -407,10 +389,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -424,7 +402,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -438,7 +416,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -470,10 +449,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -488,7 +463,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -502,8 +477,9 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
+ 				TargetMachine="17"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+--- python-2.7.7/PCbuild/pcbuild.sln	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/pcbuild.sln	Wed Jul 16 19:43:13 2014
+@@ -72,7 +72,6 @@
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_sqlite3", "_sqlite3.vcproj", "{13CECB97-4119-4316-9D42-8534019A5A44}"
+ 	ProjectSection(ProjectDependencies) = postProject
+ 		{CF7AC3D1-E2DF-41D2-BEA6-1E2556CDEA26} = {CF7AC3D1-E2DF-41D2-BEA6-1E2556CDEA26}
+-		{A1A295E5-463C-437F-81CA-1F32367685DA} = {A1A295E5-463C-437F-81CA-1F32367685DA}
+ 	EndProjectSection
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_ssl", "_ssl.vcproj", "{C6E20F84-3247-4AD6-B051-B073268F73BA}"
+--- python-2.7.7/PCbuild/pyproject.vsprops	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/pyproject.vsprops	Wed Jul 16 21:05:07 2014
+@@ -86,26 +86,26 @@
+ 	/>
+ 	<UserMacro
+ 		Name="tcltkDir"
+-		Value="$(externalsDir)\tcltk"
++		Value="$(BUNDLE_PATH)"
+ 	/>
+ 	<UserMacro
+ 		Name="tcltk64Dir"
+-		Value="$(externalsDir)\tcltk64"
++		Value="$(BUNDLE_PATH)"
+ 	/>
+ 	<UserMacro
+ 		Name="tcltkLib"
+-		Value="$(tcltkDir)\lib\tcl85.lib $(tcltkDir)\lib\tk85.lib"
++		Value="$(tcltkDir)\lib\tcl86t.lib $(tcltkDir)\lib\tk86t.lib"
+ 	/>
+ 	<UserMacro
+ 		Name="tcltkLibDebug"
+-		Value="$(tcltkDir)\lib\tcl85g.lib $(tcltkDir)\lib\tk85g.lib"
++		Value="$(tcltkDir)\lib\tcl86t.lib $(tcltkDir)\lib\tk86t.lib"
+ 	/>
+ 	<UserMacro
+ 		Name="tcltk64Lib"
+-		Value="$(tcltk64Dir)\lib\tcl85.lib $(tcltk64Dir)\lib\tk85.lib"
++		Value="$(tcltk64Dir)\lib\tcl86t.lib $(tcltk64Dir)\lib\tk86t.lib"
+ 	/>
+ 	<UserMacro
+ 		Name="tcltk64LibDebug"
+-		Value="$(tcltk64Dir)\lib\tcl85g.lib $(tcltk64Dir)\lib\tk85g.lib"
++		Value="$(tcltk64Dir)\lib\tcl86t.lib $(tcltk64Dir)\lib\tk86t.lib"
+ 	/>
+ </VisualStudioPropertySheet>
+--- python-2.7.7/PCbuild/_sqlite3.vcproj	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/_sqlite3.vcproj	Wed Jul 16 19:30:21 2014
+@@ -42,7 +42,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -57,6 +57,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -104,7 +106,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -119,6 +121,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -166,7 +170,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -181,6 +185,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -229,7 +235,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -244,6 +250,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -291,7 +299,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -306,6 +314,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -354,7 +364,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -370,6 +380,8 @@
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
+ 				TargetMachine="17"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -417,7 +429,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -432,6 +444,8 @@
+ 			<Tool
+ 				Name="VCLinkerTool"
+ 				BaseAddress="0x1e180000"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -480,7 +494,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(sqlite3Dir)"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 				PreprocessorDefinitions="MODULE_NAME=\&quot;sqlite3\&quot;"
+ 			/>
+ 			<Tool
+@@ -496,6 +510,8 @@
+ 				Name="VCLinkerTool"
+
+ 				BaseAddress="0x1e180000"
+ 				TargetMachine="17"
++                AdditionalDependencies="sqlite3.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+--- python-2.7.7/PCbuild/_ssl.vcproj	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/_ssl.vcproj	Wed Jul 16 19:14:40 2014
+@@ -26,10 +26,6 @@
+ 			CharacterSet="0"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -43,7 +39,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -57,7 +53,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -88,10 +85,6 @@
+ 			CharacterSet="0"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -106,7 +99,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -120,7 +113,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -152,10 +146,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -169,7 +159,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -183,7 +173,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -215,10 +206,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -233,7 +220,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -247,7 +234,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -279,10 +267,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -296,7 +280,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -310,7 +294,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -342,10 +327,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -360,7 +341,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -374,7 +355,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 				TargetMachine="17"
+ 			/>
+ 			<Tool
+@@ -407,10 +389,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -424,7 +402,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc32"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -438,7 +416,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out32\libeay32.lib $(opensslDir)\out32\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 			/>
+ 			<Tool
+ 				Name="VCALinkTool"
+@@ -470,10 +449,6 @@
+ 			WholeProgramOptimization="1"
+ 			>
+ 			<Tool
+-				Name="VCPreBuildEventTool"
+-				CommandLine="cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;&quot;$(PythonExe)&quot; build_ssl.py Release $(PlatformName) -a&#x0D;&#x0A;"
+-			/>
+-			<Tool
+ 				Name="VCCustomBuildTool"
+ 			/>
+ 			<Tool
+@@ -488,7 +463,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalIncludeDirectories="$(opensslDir)\inc64"
++				AdditionalIncludeDirectories="$(BUNDLE_PATH)\include"
+ 			/>
+ 			<Tool
+ 				Name="VCManagedResourceCompilerTool"
+@@ -502,7 +477,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="ws2_32.lib $(opensslDir)\out64\libeay32.lib $(opensslDir)\out64\ssleay32.lib"
++				AdditionalDependencies="ws2_32.lib libeay32.lib ssleay32.lib"
++                AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
+ 				TargetMachine="17"
+ 			/>
+ 			<Tool

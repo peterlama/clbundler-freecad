@@ -1,0 +1,28 @@
+diff -ur libf2c-2009/comptry.bat libf2c-2009_new/comptry.bat
+--- libf2c-2009/comptry.bat	Wed Aug  5 14:37:25 2009
++++ libf2c-2009_new/comptry.bat	Fri Jul 11 11:31:14 2014
+@@ -1,5 +1,7 @@
+-%1 %2 %3 %4 %5 %6 %7 %8 %9
+-if errorlevel 1 goto nolonglong
+-exit 0
+-:nolonglong
+-%1 -DNO_LONG_LONG %2 %3 %4 %5 %6 %7 %8 %9
++@setlocal
++@echo off
++%*
++if errorlevel 1 goto nossize_t
++exit 0
++:nossize_t
++%* -DNO_SSIZE_T
+diff -ur libf2c-2009/makefile.vc libf2c-2009_new/makefile.vc
+--- libf2c-2009/makefile.vc	Wed Aug  5 14:44:40 2009
++++ libf2c-2009_new/makefile.vc	Fri Jul 11 11:31:55 2014
+@@ -6,7 +6,7 @@
+ # to the objects in the "w =" list below.
+ 
+ CC = cl
+-CFLAGS = -DUSE_CLOCK -DMSDOS -DNO_ONEXIT -Ot1 -DNO_My_ctype -DNO_ISATTY
++CFLAGS = -DUSE_CLOCK -DMSDOS -DNO_ONEXIT -DNON_POSIX_STDIO -Ot1 -DNO_My_ctype -DNO_ISATTY /MD
+ 
+ .c.obj:
+ 	$(CC) -c $(CFLAGS) $*.c

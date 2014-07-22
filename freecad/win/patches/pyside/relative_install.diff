@@ -1,0 +1,37 @@
+diff -urN pyside-1.2.2/libpyside/PySideConfig-spec.cmake.in pyside-1.2.2_new/libpyside/PySideConfig-spec.cmake.in
+--- pyside-1.2.2/libpyside/PySideConfig-spec.cmake.in	Tue Apr 22 08:45:29 2014
++++ pyside-1.2.2_new/libpyside/PySideConfig-spec.cmake.in	Tue Jun 17 15:59:43 2014
+@@ -3,16 +3,16 @@
+ #  PYSIDE_PYTHONPATH    - Path to where the PySide Python module files could be found
+ #  PYSIDE_TYPESYSTEMS   - Type system files that should be used by other bindings extending PySide
+ 
+-SET(PYSIDE_INCLUDE_DIR "@CMAKE_INSTALL_PREFIX@/include/PySide@pyside_SUFFIX@")
++SET(PYSIDE_INCLUDE_DIR "${SELF_DIR}/../../../include/PySide@pyside_SUFFIX@")
+ # Platform specific library names
+ if(MSVC)
+-    SET(PYSIDE_LIBRARY "@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@.lib")
++    SET(PYSIDE_LIBRARY "${SELF_DIR}/../../@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@.lib")
+ elseif(CYGWIN)
+-    SET(PYSIDE_LIBRARY "@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_IMPORT_LIBRARY_SUFFIX@")
++    SET(PYSIDE_LIBRARY "${SELF_DIR}/../../@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_IMPORT_LIBRARY_SUFFIX@")
+ elseif(WIN32)
+-    SET(PYSIDE_LIBRARY "@CMAKE_INSTALL_PREFIX@/bin/@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_SHARED_LIBRARY_SUFFIX@")
++    SET(PYSIDE_LIBRARY "${SELF_DIR}/../../../bin/@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_SHARED_LIBRARY_SUFFIX@")
+ else()
+-    SET(PYSIDE_LIBRARY "@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_SHARED_LIBRARY_SUFFIX@")
++    SET(PYSIDE_LIBRARY "${SELF_DIR}/../../@CMAKE_SHARED_LIBRARY_PREFIX@pyside@pyside_SUFFIX@@LIBRARY_OUTPUT_SUFFIX@@SHIBOKEN_PYTHON_SUFFIX@@CMAKE_SHARED_LIBRARY_SUFFIX@")
+ endif()
+-SET(PYSIDE_PYTHONPATH "@SITE_PACKAGE@")
+-SET(PYSIDE_TYPESYSTEMS "@CMAKE_INSTALL_PREFIX@/share/PySide@pyside_SUFFIX@/typesystems")
++SET(PYSIDE_PYTHONPATH ${SELF_DIR}/../../../bin)
++SET(PYSIDE_TYPESYSTEMS "${SELF_DIR}/../../../share/PySide@pyside_SUFFIX@/typesystems")
+diff -urN pyside-1.2.2/libpyside/PySideConfig.cmake.in pyside-1.2.2_new/libpyside/PySideConfig.cmake.in
+--- pyside-1.2.2/libpyside/PySideConfig.cmake.in	Tue Apr 22 08:45:29 2014
++++ pyside-1.2.2_new/libpyside/PySideConfig.cmake.in	Tue Jun 17 15:59:43 2014
+@@ -2,4 +2,5 @@
+     message(STATUS "Using default python: @SHIBOKEN_PYTHON_SUFFIX@")
+     SET(PYTHON_BASENAME @SHIBOKEN_PYTHON_SUFFIX@)
+ endif()
+-include(@LIB_INSTALL_DIR@/cmake/PySide-@BINDING_API_VERSION@/PySideConfig${PYTHON_BASENAME}.cmake)
++get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
++include(${SELF_DIR}/PySideConfig${PYTHON_BASENAME}.cmake)

@@ -1,0 +1,42 @@
+diff -urw netgen-5.1/libsrc/occ/Partition_Inter3d.cxx netgen-5.1_new/libsrc/occ/Partition_Inter3d.cxx
+--- netgen-5.1/libsrc/occ/Partition_Inter3d.cxx	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/occ/Partition_Inter3d.cxx	Fri Jul 11 00:42:10 2014
+@@ -243,8 +243,8 @@
+       Standard_Integer i, nbExt = anExtPS.NbExt();
+       Extrema_POnSurf aPOnSurf;
+       for (i = 1; i <= nbExt; ++i )
+-	if (anExtPS.Value( i ) <= TolE)               // V6.3
+-	  // if (anExtPS.SquareDistance( i ) <= TolE)   // V6.5
++	//if (anExtPS.Value( i ) <= TolE)               // V6.3
++	if (anExtPS.SquareDistance( i ) <= TolE)   // V6.5
+ 	  {
+           aPOnSurf = anExtPS.Point( i );
+           break;
+diff -urw netgen-5.1/libsrc/occ/Partition_Loop2d.cxx netgen-5.1_new/libsrc/occ/Partition_Loop2d.cxx
+--- netgen-5.1/libsrc/occ/Partition_Loop2d.cxx	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/occ/Partition_Loop2d.cxx	Fri Jul 11 00:42:15 2014
+@@ -52,6 +52,10 @@
+ #include <gp_Pnt.hxx>
+ #include <gp_Pnt2d.hxx>
+ 
++#ifndef PI
++  #define PI M_PI
++#endif
++
+ //=======================================================================
+ //function : Partition_Loop2d
+ //purpose  :
+diff -urw netgen-5.1/libsrc/occ/Partition_Spliter.cxx netgen-5.1_new/libsrc/occ/Partition_Spliter.cxx
+--- netgen-5.1/libsrc/occ/Partition_Spliter.cxx	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/occ/Partition_Spliter.cxx	Fri Jul 11 00:42:02 2014
+@@ -1169,8 +1169,8 @@
+           for (; j<=nbj && ok; ++j) {
+             if (Extrema.IsMin(j)) {
+ 	      hasMin = Standard_True;
+-	      ok = Extrema.Value(j) <= tol;  // V6.3
+-	      // ok = Extrema.SquareDistance(j) <= tol;  // V6.5
++	      //ok = Extrema.Value(j) <= tol;  // V6.3
++	      ok = Extrema.SquareDistance(j) <= tol;  // V6.5
+ 	    }
+           }
+         }

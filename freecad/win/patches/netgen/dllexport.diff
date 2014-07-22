@@ -1,0 +1,105 @@
+diff -urw netgen-5.1/libsrc/meshing/meshclass.hpp netgen-5.1_new/libsrc/meshing/meshclass.hpp
+--- netgen-5.1/libsrc/meshing/meshclass.hpp	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/meshing/meshclass.hpp	Fri Jul 11 00:38:42 2014
+@@ -320,7 +320,7 @@
+     { dimension = dim; }
+ 
+     /// sets internal tables
+-    void CalcSurfacesOfNode ();
++    DLL_HEADER void CalcSurfacesOfNode ();
+ 
+     /// additional (temporarily) fix points 
+     void FixPoints (const BitArray & fixpoints);
+diff -urw netgen-5.1/libsrc/meshing/meshtype.hpp netgen-5.1_new/libsrc/meshing/meshtype.hpp
+--- netgen-5.1/libsrc/meshing/meshtype.hpp	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/meshing/meshtype.hpp	Fri Jul 11 00:38:46 2014
+@@ -175,7 +175,7 @@
+   }
+ 
+ 
+-  class SurfaceElementIndex
++  class DLL_HEADER SurfaceElementIndex
+   {
+     int i;
+   public:
+@@ -231,7 +231,7 @@
+      Point in the mesh.
+      Contains layer (a new feature in 4.3 for overlapping meshes.
+   */
+-  class MeshPoint : public Point<3>
++  class DLL_HEADER MeshPoint : public Point<3>
+   {
+     int layer;
+     double singular; // singular factor for hp-refinement
+@@ -323,9 +323,9 @@
+ 
+   public:
+     ///
+-    Element2d ();
++    DLL_HEADER Element2d ();
+     ///
+-    Element2d (int anp);
++    DLL_HEADER Element2d (int anp);
+     ///
+     DLL_HEADER Element2d (ELEMENT_TYPE type);
+     ///
+diff -urw netgen-5.1/libsrc/occ/occgeom.hpp netgen-5.1_new/libsrc/occ/occgeom.hpp
+--- netgen-5.1/libsrc/occ/occgeom.hpp	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/occ/occgeom.hpp	Fri Jul 11 00:38:32 2014
+@@ -189,7 +189,7 @@
+ 
+ 
+ 
+-   class OCCGeometry : public NetgenGeometry
++   class DLL_HEADER OCCGeometry : public NetgenGeometry
+    {
+       Point<3> center;
+ 
+@@ -435,7 +435,7 @@
+    // Philippose - 31.09.2009
+    // External access to the mesh generation functions within the OCC
+    // subsystem (Not sure if this is the best way to implement this....!!)
+-   extern int OCCGenerateMesh (OCCGeometry & occgeometry, Mesh*& mesh,
++   DLL_HEADER extern int OCCGenerateMesh (OCCGeometry & occgeometry, Mesh*& mesh,
+ 			       MeshingParameters & mparam,
+ 			       int perfstepsstart, int perfstepsend);
+ 
+diff -urw netgen-5.1/libsrc/occ/occmeshsurf.hpp netgen-5.1_new/libsrc/occ/occmeshsurf.hpp
+--- netgen-5.1/libsrc/occ/occmeshsurf.hpp	Tue Jun 25 04:28:59 2013
++++ netgen-5.1_new/libsrc/occ/occmeshsurf.hpp	Fri Jul 11 00:38:38 2014
+@@ -16,7 +16,7 @@
+ class UVBoundsException
+ {};
+ 
+-class OCCSurface
++class DLL_HEADER OCCSurface
+ {
+ public:
+   TopoDS_Face topods_face;
+@@ -103,7 +103,7 @@
+ 
+ 
+ ///
+-class Meshing2OCCSurfaces : public Meshing2
++class DLL_HEADER Meshing2OCCSurfaces : public Meshing2
+ {
+   ///
+   OCCSurface surface;
+@@ -141,7 +141,7 @@
+ 
+ 
+ ///
+-class MeshOptimize2dOCCSurfaces : public MeshOptimize2d
++class DLL_HEADER MeshOptimize2dOCCSurfaces : public MeshOptimize2d
+   {
+   ///
+   const OCCGeometry & geometry;
+@@ -169,7 +169,7 @@
+ class OCCGeometry;
+ 
+ 
+-class OCCRefinementSurfaces : public Refinement
++class DLL_HEADER OCCRefinementSurfaces : public Refinement
+ {
+   const OCCGeometry & geometry;
+ 

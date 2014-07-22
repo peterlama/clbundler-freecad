@@ -1,0 +1,18 @@
+--- a/tests/libsample/simplefile.cpp	Wed Aug 14 11:36:46 2013
++++ b/tests/libsample/simplefile.cpp	Tue Mar 25 14:35:49 2014
+@@ -90,13 +90,13 @@
+ SimpleFile::exists() const
+ {
+     std::ifstream ifile(p->m_filename);
+-    return ifile;
++    return ! ifile.fail();
+ }
+ 
+ bool
+ SimpleFile::exists(const char* filename)
+ {
+     std::ifstream ifile(filename);
+-    return ifile;
++    return ! ifile.fail();
+ }
+ 

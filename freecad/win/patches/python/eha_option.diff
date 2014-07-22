@@ -1,0 +1,38 @@
+--- python-2.7.7/PCbuild/pythoncore.vcproj	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PCbuild/pythoncore.vcproj	Tue Jun 17 12:17:27 2014
+@@ -42,7 +42,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalOptions="/Zm200 "
++				AdditionalOptions="/Zm200 /EHa"
+ 				AdditionalIncludeDirectories="..\Python;..\Modules\zlib"
+ 				PreprocessorDefinitions="_USRDLL;Py_BUILD_CORE;Py_ENABLE_SHARED;WIN32"
+ 				RuntimeLibrary="2"
+@@ -117,7 +117,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalOptions="/Zm200 "
++				AdditionalOptions="/Zm200 /EHa"
+ 				AdditionalIncludeDirectories="..\Python;..\Modules\zlib"
+ 				PreprocessorDefinitions="_USRDLL;Py_BUILD_CORE;Py_ENABLE_SHARED;WIN32"
+ 				RuntimeLibrary="2"
+@@ -192,7 +192,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalOptions="/Zm200 "
++				AdditionalOptions="/Zm200 /EHa"
+ 				Optimization="0"
+ 				InlineFunctionExpansion="0"
+ 				EnableIntrinsicFunctions="false"
+@@ -270,7 +270,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+-				AdditionalOptions="/Zm200 "
++				AdditionalOptions="/Zm200 /EHa"
+ 				Optimization="0"
+ 				InlineFunctionExpansion="0"
+ 				EnableIntrinsicFunctions="false"

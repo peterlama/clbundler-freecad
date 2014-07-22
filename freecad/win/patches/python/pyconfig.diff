@@ -1,0 +1,92 @@
+diff -urN python-2.7.7/PC/pyconfig.h python-2.7.7_new/PC/pyconfig.h
+--- python-2.7.7/PC/pyconfig.h	Sat May 31 11:58:40 2014
++++ python-2.7.7_new/PC/pyconfig.h	Mon Jun 16 23:15:03 2014
+@@ -106,6 +106,11 @@
+ /* Microsoft C defines _MSC_VER */
+ #ifdef _MSC_VER
+ 
++
++#if _MSC_VER >= 1800
++#define HAVE_ROUND 1
++#endif
++
+ /* We want COMPILER to expand to a string containing _MSC_VER's *value*.
+  * This is horridly tricky, because the stringization operator only works
+  * on macro arguments, and doesn't evaluate macros passed *as* arguments.
+@@ -396,39 +401,70 @@
+ 
+ /* define signed and unsigned exact-width 32-bit and 64-bit types, used in the
+    implementation of Python long integers. */
++/* defining HAVE_<int>_T but no typedef can cause errors with other applications */
+ #ifndef PY_UINT32_T
+ #if SIZEOF_INT == 4
+-#define HAVE_UINT32_T 1
+ #define PY_UINT32_T unsigned int
+-#elif SIZEOF_LONG == 4
++
++#ifndef HAVE_UINT32_T
+ #define HAVE_UINT32_T 1
++typedef unsigned int uint32_t;
++#endif
++
++#elif SIZEOF_LONG == 4
+ #define PY_UINT32_T unsigned long
++
++#ifndef HAVE_UINT32_T
++#define HAVE_UINT32_T 1
++typedef unsigned long uint32_t;
+ #endif
++
+ #endif
++#endif /* PY_UINT32_T */
+ 
+ #ifndef PY_UINT64_T
+ #if SIZEOF_LONG_LONG == 8
+-#define HAVE_UINT64_T 1
+ #define PY_UINT64_T unsigned PY_LONG_LONG
++
++#ifndef HAVE_UINT64_T
++#define HAVE_UINT64_T 1
++typedef unsigned PY_LONG_LONG uint64_t;
+ #endif
++
+ #endif
++#endif /* PY_UINT64_T */
+ 
+ #ifndef PY_INT32_T
+ #if SIZEOF_INT == 4
+-#define HAVE_INT32_T 1
+ #define PY_INT32_T int
+-#elif SIZEOF_LONG == 4
++
++#ifndef HAVE_INT32_T
+ #define HAVE_INT32_T 1
++typedef int int32_t;
++#endif
++
++#elif SIZEOF_LONG == 4
+ #define PY_INT32_T long
++
++#ifndef HAVE_INT32_T
++#define HAVE_INT32_T 1
++typedef long int32_t;
+ #endif
++
+ #endif
++#endif /* PY_INT32_T */
+ 
+ #ifndef PY_INT64_T
+ #if SIZEOF_LONG_LONG == 8
+-#define HAVE_INT64_T 1
+ #define PY_INT64_T PY_LONG_LONG
++
++#ifndef HAVE_INT64_T
++#define HAVE_INT64_T 1
++typedef PY_LONG_LONG int64_t;
+ #endif
++
+ #endif
++#endif /* PY_INT64_T */
+ 
+ /* Fairly standard from here! */
+ 

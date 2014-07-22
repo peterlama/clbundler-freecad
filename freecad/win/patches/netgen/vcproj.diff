@@ -1,0 +1,434 @@
+diff --git a/windows/nglib.vcproj b/windows/nglib.vcproj
+index b42ed06..e8db69f 100644
+--- a/windows/nglib.vcproj
++++ b/windows/nglib.vcproj
+@@ -1,7 +1,7 @@
+ ﻿<?xml version="1.0" encoding="UTF-8"?>
+ <VisualStudioProject
+ 	ProjectType="Visual C++"
+-	Version="9,00"
++	Version="9.00"
+ 	Name="nglib"
+ 	ProjectGUID="{2E260C8C-595C-442A-A962-51AC06EF8143}"
+ 	RootNamespace="nglib"
+@@ -45,7 +45,7 @@
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+ 				Optimization="0"
+-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
+ 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;_WIN32_WINNT=0x0502"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="3"
+@@ -65,9 +65,11 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2.lib"
++				AdditionalDependencies="pthreadVC2d.lib zlibd.lib"
++				OutputFile="$(OutDir)\$(ProjectName)d.dll"
+ 				LinkIncremental="2"
+-				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\lib&quot;"
++				AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
++                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 				GenerateDebugInformation="true"
+ 				SubSystem="2"
+@@ -96,6 +98,7 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 		<Configuration
+@@ -125,7 +128,7 @@
+ 			<Tool
+ 				Name="VCCLCompilerTool"
+ 				Optimization="0"
+-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
+ 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;_WIN32_WINNT=0x0502"
+ 				MinimalRebuild="true"
+ 				BasicRuntimeChecks="3"
+@@ -145,9 +148,11 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2_64.lib"
++				AdditionalDependencies="pthreadVC2.lib zlibd.lib"
++				OutputFile="$(OutDir)\$(ProjectName)d.dll"
+ 				LinkIncremental="2"
+-				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\lib&quot;"
++				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
++                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 				GenerateDebugInformation="true"
+ 				SubSystem="2"
+@@ -176,6 +181,7 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 		<Configuration
+@@ -209,7 +215,7 @@
+ 				InlineFunctionExpansion="2"
+ 				EnableIntrinsicFunctions="true"
+ 				FavorSizeOrSpeed="1"
+-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..&quot;;&quot;$(SolutionDir)..\ng&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\libsrc\interface&quot;;&quot;$(SolutionDir)..\..\ext_libs\tcl\include&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthreads-Win32\include&quot;;&quot;$(SolutionDir)..\..\ext_libs\zlib\include&quot;;$(NOINHERIT)"
++				AdditionalIncludeDirectories="&quot;$(SolutionDir)..&quot;;&quot;$(SolutionDir)..\ng&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\libsrc\interface&quot;;&quot;$(BUNDLE_PATH)\include&quot;;$(NOINHERIT)"
+ 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;_WIN32_WINNT=0x0502"
+ 				RuntimeLibrary="2"
+ 				EnableFunctionLevelLinking="true"
+@@ -232,7 +238,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2.lib zdll.lib"
++				AdditionalDependencies="pthreadVC2.lib zlib.lib"
+ 				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x86&quot;;&quot;$(SolutionDir)..\..\ext_libs\zlib\x86\lib&quot;"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 			/>
+@@ -259,6 +265,7 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 		<Configuration
+@@ -293,7 +300,7 @@
+ 				InlineFunctionExpansion="2"
+ 				EnableIntrinsicFunctions="true"
+ 				FavorSizeOrSpeed="1"
+-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..&quot;;&quot;$(SolutionDir)..\ng&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\libsrc\interface&quot;;&quot;$(SolutionDir)..\..\ext_libs\tcl\include&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthreads-Win32\include&quot;;&quot;$(SolutionDir)..\..\ext_libs\zlib\include&quot;;$(NOINHERIT)"
++				AdditionalIncludeDirectories="&quot;$(SolutionDir)..&quot;;&quot;$(SolutionDir)..\ng&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\libsrc\interface&quot;;&quot;$(BUNDLE_PATH)\include&quot;;$(NOINHERIT)"
+ 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;_WIN32_WINNT=0x0502;NOTCL"
+ 				RuntimeLibrary="2"
+ 				EnableFunctionLevelLinking="true"
+@@ -316,7 +323,7 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2.lib zlib1.lib"
++				AdditionalDependencies="pthreadVC2.lib zlib.lib"
+ 				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthreads-Win32\lib\x64&quot;;&quot;$(SolutionDir)..\..\ext_libs\zlib\x64\lib&quot;"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 				TargetMachine="17"
+@@ -344,6 +351,7 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 		<Configuration
+@@ -377,8 +385,8 @@
+ 				InlineFunctionExpansion="2"
+ 				EnableIntrinsicFunctions="true"
+ 				FavorSizeOrSpeed="1"
+-				AdditionalIncludeDirectories="&quot;$(CASROOT)\inc&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
+-				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=;OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
+ 				RuntimeLibrary="2"
+ 				EnableFunctionLevelLinking="true"
+ 				EnableEnhancedInstructionSet="1"
+@@ -400,8 +408,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2.lib TKernel.lib TKGeomBase.lib TKMath.lib TKG2d.lib TKG3d.lib TKXSBase.lib TKOffset.lib TKFillet.lib TKShHealing.lib TKMesh.lib TKMeshVS.lib TKTopAlgo.lib TKGeomAlgo.lib TKBool.lib TKPrim.lib TKBO.lib TKIGES.lib TKBRep.lib TKSTEPBase.lib TKSTEP.lib TKSTL.lib TKSTEPAttr.lib TKSTEP209.lib TKXDESTEP.lib TKXDEIGES.lib TKXCAF.lib TKDCAF.lib TKLCAF.lib"
+-				AdditionalLibraryDirectories="$(CASROOT)\win32\lib;&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\lib&quot;"
++				AdditionalDependencies="pthreadVC2.lib zlib.lib TKernel.lib TKGeomBase.lib TKMath.lib TKG2d.lib TKG3d.lib TKXSBase.lib TKOffset.lib TKFillet.lib TKShHealing.lib TKMesh.lib TKMeshVS.lib TKTopAlgo.lib TKGeomAlgo.lib TKBool.lib TKPrim.lib TKBO.lib TKIGES.lib TKBRep.lib TKSTEPBase.lib TKSTEP.lib TKSTL.lib TKSTEPAttr.lib TKSTEP209.lib TKXDESTEP.lib TKXDEIGES.lib TKXCAF.lib TKDCAF.lib TKLCAF.lib"
++				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 			/>
+ 			<Tool
+@@ -427,6 +435,7 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 		<Configuration
+@@ -461,7 +470,7 @@
+ 				InlineFunctionExpansion="2"
+ 				EnableIntrinsicFunctions="true"
+ 				FavorSizeOrSpeed="1"
+-				AdditionalIncludeDirectories="&quot;$(CASROOT)\inc&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
+ 				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=;OCCGEOMETRY;_OCC64;_WIN32_WINNT=0x0502"
+ 				RuntimeLibrary="2"
+ 				EnableFunctionLevelLinking="true"
+@@ -484,8 +493,8 @@
+ 			/>
+ 			<Tool
+ 				Name="VCLinkerTool"
+-				AdditionalDependencies="pthreadVC2_64.lib TKernel.lib TKGeomBase.lib TKMath.lib TKG2d.lib TKG3d.lib TKXSBase.lib TKOffset.lib TKFillet.lib TKShHealing.lib TKMesh.lib TKMeshVS.lib TKTopAlgo.lib TKGeomAlgo.lib TKBool.lib TKPrim.lib TKBO.lib TKIGES.lib TKBRep.lib TKSTEPBase.lib TKSTEP.lib TKSTL.lib TKSTEPAttr.lib TKSTEP209.lib TKXDESTEP.lib TKXDEIGES.lib TKXCAF.lib TKLCAF.lib"
+-				AdditionalLibraryDirectories="$(CASROOT)\win64\lib;&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\lib&quot;"
++				AdditionalDependencies="pthreadVC2.lib zlib.lib TKernel.lib TKGeomBase.lib TKMath.lib TKG2d.lib TKG3d.lib TKXSBase.lib TKOffset.lib TKFillet.lib TKShHealing.lib TKMesh.lib TKMeshVS.lib TKTopAlgo.lib TKGeomAlgo.lib TKBool.lib TKPrim.lib TKBO.lib TKIGES.lib TKBRep.lib TKSTEPBase.lib TKSTEP.lib TKSTL.lib TKSTEPAttr.lib TKSTEP209.lib TKXDESTEP.lib TKXDEIGES.lib TKXCAF.lib TKDCAF.lib TKLCAF.lib"
++				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
+ 				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
+ 				TargetMachine="17"
+ 			/>
+@@ -512,6 +521,172 @@
+ 			<Tool
+ 				Name="VCPostBuildEventTool"
+ 				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
++			/>
++		</Configuration>
++		<Configuration
++			Name="Debug(OCC)|Win32"
++			OutputDirectory="$(SolutionDir)$(ProjectName)\$(ConfigurationName)"
++			IntermediateDirectory="$(ProjectName)\$(ConfigurationName)"
++			ConfigurationType="2"
++			CharacterSet="1"
++			BuildLogFile="$(SolutionDir)\BuildLog_$(ProjectName).htm"
++			>
++			<Tool
++				Name="VCPreBuildEventTool"
++			/>
++			<Tool
++				Name="VCCustomBuildTool"
++			/>
++			<Tool
++				Name="VCXMLDataGeneratorTool"
++			/>
++			<Tool
++				Name="VCWebServiceProxyGeneratorTool"
++			/>
++			<Tool
++				Name="VCMIDLTool"
++			/>
++			<Tool
++				Name="VCCLCompilerTool"
++				Optimization="0"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				MinimalRebuild="true"
++				BasicRuntimeChecks="3"
++				RuntimeLibrary="3"
++				UsePrecompiledHeader="0"
++				WarningLevel="3"
++				DebugInformationFormat="4"
++			/>
++			<Tool
++				Name="VCManagedResourceCompilerTool"
++			/>
++			<Tool
++				Name="VCResourceCompilerTool"
++			/>
++			<Tool
++				Name="VCPreLinkEventTool"
++			/>
++			<Tool
++				Name="VCLinkerTool"
++				AdditionalDependencies="pthreadVC2d.lib zlibd.lib TKerneld.lib TKGeomBased.lib TKMathd.lib TKG2dd.lib TKG3dd.lib TKXSBased.lib TKOffsetd.lib TKFilletd.lib TKShHealingd.lib TKMeshd.lib TKMeshVSd.lib TKTopAlgod.lib TKGeomAlgod.lib TKBoold.lib TKPrimd.lib TKBOd.lib TKIGESd.lib TKBRepd.lib TKSTEPBased.lib TKSTEPd.lib TKSTLd.lib TKSTEPAttrd.lib TKSTEP209d.lib TKXDESTEPd.lib TKXDEIGESd.lib TKXCAFd.lib TKDCAFd.lib TKLCAFd.lib"
++				OutputFile="$(OutDir)\$(ProjectName)d.dll"
++				LinkIncremental="2"
++				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
++                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
++				GenerateDebugInformation="true"
++				SubSystem="2"
++				TargetMachine="1"
++			/>
++			<Tool
++				Name="VCALinkTool"
++			/>
++			<Tool
++				Name="VCManifestTool"
++				OutputManifestFile="$(OutDir)\$(TargetFileName).embed.manifest"
++				ManifestResourceFile="$(OutDir)\$(TargetFileName).embed.manifest.res"
++			/>
++			<Tool
++				Name="VCXDCMakeTool"
++			/>
++			<Tool
++				Name="VCBscMakeTool"
++			/>
++			<Tool
++				Name="VCFxCopTool"
++			/>
++			<Tool
++				Name="VCAppVerifierTool"
++			/>
++			<Tool
++				Name="VCPostBuildEventTool"
++				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
++			/>
++		</Configuration>
++		<Configuration
++			Name="Debug(OCC)|x64"
++			OutputDirectory="$(SolutionDir)$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
++			IntermediateDirectory="$(ProjectName)\$(PlatformName)\$(ConfigurationName)"
++			ConfigurationType="2"
++			CharacterSet="1"
++			BuildLogFile="$(SolutionDir)\BuildLog_$(ProjectName)_$(PlatformName).htm"
++			>
++			<Tool
++				Name="VCPreBuildEventTool"
++			/>
++			<Tool
++				Name="VCCustomBuildTool"
++			/>
++			<Tool
++				Name="VCXMLDataGeneratorTool"
++			/>
++			<Tool
++				Name="VCWebServiceProxyGeneratorTool"
++			/>
++			<Tool
++				Name="VCMIDLTool"
++				TargetEnvironment="3"
++			/>
++			<Tool
++				Name="VCCLCompilerTool"
++				Optimization="0"
++				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
++				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				MinimalRebuild="true"
++				BasicRuntimeChecks="3"
++				RuntimeLibrary="3"
++				UsePrecompiledHeader="0"
++				WarningLevel="3"
++				DebugInformationFormat="3"
++			/>
++			<Tool
++				Name="VCManagedResourceCompilerTool"
++			/>
++			<Tool
++				Name="VCResourceCompilerTool"
++			/>
++			<Tool
++				Name="VCPreLinkEventTool"
++			/>
++			<Tool
++				Name="VCLinkerTool"
++				AdditionalDependencies="pthreadVC2d.lib zlibd.lib TKerneld.lib TKGeomBased.lib TKMathd.lib TKG2dd.lib TKG3dd.lib TKXSBased.lib TKOffsetd.lib TKFilletd.lib TKShHealingd.lib TKMeshd.lib TKMeshVSd.lib TKTopAlgod.lib TKGeomAlgod.lib TKBoold.lib TKPrimd.lib TKBOd.lib TKIGESd.lib TKBRepd.lib TKSTEPBased.lib TKSTEPd.lib TKSTLd.lib TKSTEPAttrd.lib TKSTEP209d.lib TKXDESTEPd.lib TKXDEIGESd.lib TKXCAFd.lib TKDCAFd.lib TKLCAFd.lib"
++				OutputFile="$(OutDir)\$(ProjectName)d.dll"
++				LinkIncremental="0"
++				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
++				ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++                ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
++				GenerateDebugInformation="true"
++				SubSystem="2"
++				TargetMachine="17"
++			/>
++			<Tool
++				Name="VCALinkTool"
++			/>
++			<Tool
++				Name="VCManifestTool"
++				OutputManifestFile="$(OutDir)\$(TargetFileName).embed.manifest"
++				ManifestResourceFile="$(OutDir)\$(TargetFileName).embed.manifest.res"
++			/>
++			<Tool
++				Name="VCXDCMakeTool"
++			/>
++			<Tool
++				Name="VCBscMakeTool"
++			/>
++			<Tool
++				Name="VCFxCopTool"
++			/>
++			<Tool
++				Name="VCAppVerifierTool"
++			/>
++			<Tool
++				Name="VCPostBuildEventTool"
++				CommandLine="&quot;$(ProjectDir)\postBuild_nglib.bat&quot; &quot;$(ProjectName)&quot; &quot;$(TargetFileName)&quot; &quot;$(ConfigurationName)&quot; &quot;$(PlatformName)&quot; &quot;$(ProjectDir)&quot;"
++				ExcludedFromBuild="true"
+ 			/>
+ 		</Configuration>
+ 	</Configurations>
+@@ -1194,11 +1369,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\geom2d\geometry2d.hpp"
++				RelativePath="..\libsrc\include\geometry2d.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\geometry2d.hpp"
++				RelativePath="..\libsrc\geom2d\geometry2d.hpp"
+ 				>
+ 			</File>
+ 			<File
+@@ -1238,11 +1413,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\gprim.hpp"
++				RelativePath="..\libsrc\gprim\gprim.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\gprim\gprim.hpp"
++				RelativePath="..\libsrc\include\gprim.hpp"
+ 				>
+ 			</File>
+ 			<File
+@@ -1294,11 +1469,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\linalg.hpp"
++				RelativePath="..\libsrc\linalg\linalg.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\linalg\linalg.hpp"
++				RelativePath="..\libsrc\include\linalg.hpp"
+ 				>
+ 			</File>
+ 			<File
+@@ -1318,11 +1493,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\meshing\meshing.hpp"
++				RelativePath="..\libsrc\include\meshing.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\meshing.hpp"
++				RelativePath="..\libsrc\meshing\meshing.hpp"
+ 				>
+ 			</File>
+ 			<File
+@@ -1358,11 +1533,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\general\myadt.hpp"
++				RelativePath="..\libsrc\include\myadt.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\myadt.hpp"
++				RelativePath="..\libsrc\general\myadt.hpp"
+ 				>
+ 			</File>
+ 			<File
+@@ -1398,11 +1573,11 @@
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\linalg\opti.hpp"
++				RelativePath="..\libsrc\include\opti.hpp"
+ 				>
+ 			</File>
+ 			<File
+-				RelativePath="..\libsrc\include\opti.hpp"
++				RelativePath="..\libsrc\linalg\opti.hpp"
+ 				>
+ 			</File>
+ 			<File

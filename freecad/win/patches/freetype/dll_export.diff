@@ -1,0 +1,11 @@
+--- a/include/config/ftoption.h	2014-01-18 09:47:30 -0800
++++ b/include/config/ftoption.h	2014-01-18 09:23:54 -0800
+@@ -268,6 +268,8 @@
+   /*                                                                       */
+ /* #define FT_EXPORT(x)      extern x */
+ /* #define FT_EXPORT_DEF(x)  x */
++#define FT_EXPORT(x) __declspec(dllexport) x
++#define FT_EXPORT_DEF(x) __declspec(dllexport) x
+ 
+ 
+   /*************************************************************************/
