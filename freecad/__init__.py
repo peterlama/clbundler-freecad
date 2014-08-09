@@ -11,15 +11,15 @@ class freecad(Formula):
             "coin",
             "eigen",
             "f2c",
-            "freeimage",
             "freetype",
-            "netgen",
             "oce",
             "pyside",
             "python",
             "qt",
-            "shiboken",
             "soqt",
-            "xerces_c",
-            "zlib"
+            "xerces_c"
         ])
+
+        if context.os_name == "win":
+            self.add_deps(["netgen"])
+

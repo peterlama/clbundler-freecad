@@ -1,7 +1,7 @@
 diff -urN FreeImage/CMakeLists.txt FreeImage_new/CMakeLists.txt
 --- FreeImage/CMakeLists.txt	Wed Dec 31 16:00:00 1969
 +++ FreeImage_new/CMakeLists.txt	Thu Jun 12 14:44:59 2014
-@@ -0,0 +1,112 @@
+@@ -0,0 +1,111 @@
 +####### FREEIMAGE
 +#Original file from oce-win-bundle: https://github.com/QbProg/oce-win-bundle
 +#Modified by Peter Lama <peterldev94@gmail.com>
@@ -20,8 +20,7 @@ diff -urN FreeImage/CMakeLists.txt FreeImage_new/CMakeLists.txt
 +ADD_DEFINITIONS("-DFIP_EXPORTS")
 +
 +IF(CMAKE_COMPILER_IS_GNUCXX)
-+  ADD_DEFINITIONS("-fpermissive")
-+  LINK_LIBRARIES(Ws2_32)
++  ADD_DEFINITIONS("-fvisibility=hidden")
 +ENDIF()
 +
 +SET(CMAKE_DEBUG_POSTFIX "d")
