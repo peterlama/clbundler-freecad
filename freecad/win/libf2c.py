@@ -17,8 +17,8 @@ class libf2c(Formula):
         system.run_cmd("nmake", ["/f", "makefile.vc"])
         
         files = FileSet()
-        files.add(["f2c.h"], "include", category="dev")
-        files.add(["vcf2c.lib"], "lib", category="dev")
+        files.add(["f2c.h"], "include", category=Categories.build)
+        files.add(["vcf2c.lib"], "lib", category=Categories.build)
         
         return files
         

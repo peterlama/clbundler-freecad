@@ -30,9 +30,9 @@ class boost(Formula):
                                   "--with-thread"])
         
         files = FileSet()
-        files.add(["boost"], "include", category="dev")
-        files.add(["stage/lib/*.lib"], "lib", category="dev")
-        files.add(["stage/lib/*mt-????.dll"], "bin", category="rel")
-        files.add(["stage/lib/*mt-gd-????.dll"], "bin", category="dbg")
+        files.add(["boost"], "include", category=Categories.build)
+        files.add(["stage/lib/*.lib"], "lib", category=Categories.build)
+        files.add(["stage/lib/*mt-????.dll"], "bin", category=Categories.run)
+        files.add(["stage/lib/*mt-gd-????.dll"], "bin", category=Categories.run_dbg)
         
         return files

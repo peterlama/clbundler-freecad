@@ -47,6 +47,7 @@ class oce(Formula):
         if self.context.toolchain.startswith("vc"):
             cmake_options["OCE_USE_MSVC_EXPRESS"] = "ON"
             cmake_options["OCE_COPY_HEADERS_BUILD"] = "ON"
+            cmake_options["OCE_TESTING"] = "OFF"
             cmake_options["CMAKE_CXX_FLAGS"] = "/DWIN32 /D_WINDOWS /W3 /GR /EHa /Zm2000"
 
         cmake(self.context, cmake_options)
@@ -66,17 +67,17 @@ class oce(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/cmake/*"], "lib/cmake", category="dev")
-        files.add(["bin/DRAWEXE*"], "bin", category="rel")
-        files.add(["share/oce*"], "share", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/cmake/*"], "lib/cmake", category=Categories.build)
+        files.add(["bin/DRAWEXE*"], "bin", category=Categories.run)
+        files.add(["share/oce*"], "share", category=Categories.run)
 
         if self.context.toolchain.startswith("vc"):
-            files.add(["lib/*.lib", "lib/*.pdb"], "lib", category="dev")       
-            files.add(["bin/*[!d].dll"], "bin", category="rel")
-            files.add(["bin/*d.dll"], "bin", category="dbg")
+            files.add(["lib/*.lib", "lib/*.pdb"], "lib", category=Categories.build)       
+            files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
+            files.add(["bin/*d.dll"], "bin", category=Categories.run_dbg)
         else:
-            files.add(["lib/*"], "lib", exclude=["lib/cmake"], category="rel")
+            files.add(["lib/*"], "lib", exclude=["lib/cmake"], category=Categories.run)
         
         return files
 

@@ -72,7 +72,7 @@ class qt(Formula):
                        "include/QtOpenVG",
                        "include/QtMultimedia",
                        "**/*.pri"]
-            files.add(["include/*"], "include", exclude, category="dev")
+            files.add(["include/*"], "include", exclude, category=Categories.build)
             
             exclude = ["src/imports/**",
                        "src/multimedia/**",
@@ -80,17 +80,17 @@ class qt(Formula):
                        "src/phonon/**",
                        "src/qt3support/**",
                        "src/plugins/**"]
-            files.add(["src/**/*.h"], "src", exclude, category="dev")
+            files.add(["src/**/*.h"], "src", exclude, category=Categories.build)
             
-            files.add(["tools/**/*.h"], "tools", category="dev")
-            files.add(["lib/*.lib"], "lib", category="dev")
-            files.add(["bin/*[!d]?.dll", "bin/*.exe"], "bin", category="rel")
-            files.add(["bin/*d?.dll"], "bin", category="dbg")
+            files.add(["tools/**/*.h"], "tools", category=Categories.build)
+            files.add(["lib/*.lib"], "lib", category=Categories.build)
+            files.add(["bin/*[!d]?.dll", "bin/*.exe"], "bin", category=Categories.run)
+            files.add(["bin/*d?.dll"], "bin", category=Categories.run_dbg)
             
-            files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category="rel")
+            files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
         else:
             os.chdir(self.context.install_dir)
-            files.add(["include/*"], "include", category="dev")
+            files.add(["include/*"], "include", category=Categories.build)
             files.add(["lib/*.dylib"], "lib")
             files.add(["bin/*"], "bin")
             files.add(["plugins/*"], "lib/QtPlugins", plugins_exclude)

@@ -27,12 +27,12 @@ class tcl(Formula):
                    "generic/tclPort.h",
                    "generic/tclOOInt.h",
                    "generic/tclOOIntDecls.h",
-                   "win/tclWinPort.h"], "include", category="dev")
+                   "win/tclWinPort.h"], "include", category=Categories.build)
         
         os.chdir(self.context.install_dir)
                 
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/*"], "lib", category="dev")
-        files.add(["bin/*"], "bin", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/*"], "lib", category=Categories.build)
+        files.add(["bin/*"], "bin", category=Categories.run)
         
         return files

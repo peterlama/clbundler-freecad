@@ -35,13 +35,13 @@ class shiboken(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/cmake/*"], "lib/cmake", category="dev")
-        files.add(["lib/*.lib"], "lib", category="dev")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/cmake/*"], "lib/cmake", category=Categories.build)
+        files.add(["lib/*.lib"], "lib", category=Categories.build)
         files.add(["bin/shiboken.exe",
                    "bin/shiboken.pyd",
-                   "bin/shiboken-python2.7.dll"], "bin", category="rel")
+                   "bin/shiboken-python2.7.dll"], "bin", category=Categories.run)
         files.add(["bin/shiboken_d.pyd",
-                   "bin/shiboken-python2.7_d.dll"], "bin", category="dbg")
+                   "bin/shiboken-python2.7_d.dll"], "bin", category=Categories.run_dbg)
         
         return files

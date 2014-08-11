@@ -25,7 +25,7 @@ class boost(Formula):
                               "--with-thread"])
         
         files = FileSet()
-        files.add(["boost"], "include", category="dev")
-        files.add(["stage/lib/*.dylib"], "lib", category="rel")
+        files.add(["boost"], "include", category=Categories.build)
+        files.add(["stage/lib/*.dylib"], "lib", category=Categories.run)
         
         return files

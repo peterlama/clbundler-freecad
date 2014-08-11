@@ -20,10 +20,10 @@ class coin(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["bin/coin-config"], "bin", category="dev")
-        files.add(["lib/*.dylib"], "lib", category="rel")
-        files.add(["share/Coin"], "share", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["bin/coin-config"], "bin", category=Categories.build)
+        files.add(["lib/*.dylib"], "lib", category=Categories.run)
+        files.add(["share/Coin"], "share", category=Categories.run)
         
         return files
         

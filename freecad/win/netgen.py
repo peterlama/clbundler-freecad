@@ -27,16 +27,16 @@ class netgen(Formula):
         vcbuild(self.context, vcproj, "Release(OCC)")
         
         files = FileSet()
-        files.add(["nglib/nglib.h"], "include", category="dev")
-        files.add(["libsrc/**/*.hpp", "libsrc/**/*.h"], "include/netgen", category="dev")
+        files.add(["nglib/nglib.h"], "include", category=Categories.build)
+        files.add(["libsrc/**/*.hpp", "libsrc/**/*.h"], "include/netgen", category=Categories.build)
         
         os.chdir("windows/nglib")
         if self.context.arch == "x64":
             os.chdir("x64")
         
-        files.add(["Debug(OCC)/*.lib", "Release(OCC)/*.lib"], "lib", category="dev")
-        files.add(["Release(OCC)/*.dll"], "bin", category="rel")
-        files.add(["Debug(OCC)/*.dll"], "bin", category="dbg")
+        files.add(["Debug(OCC)/*.lib", "Release(OCC)/*.lib"], "lib", category=Categories.build)
+        files.add(["Release(OCC)/*.dll"], "bin", category=Categories.run)
+        files.add(["Debug(OCC)/*.dll"], "bin", category=Categories.run_dbg)
         
         return files
         

@@ -34,17 +34,17 @@ class freetype(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/freetype2"], "include", category="dev")
+        files.add(["include/freetype2"], "include", category=Categories.build)
 
         if self.context.toolchain.startswith("vc"):
-            files.add(["lib/*"], "lib", category="dev")
-            files.add(["bin/freetype.dll"], "bin", category="rel")
-            files.add(["bin/freetyped.dll"], "bin", category="dbg")
+            files.add(["lib/*"], "lib", category=Categories.build)
+            files.add(["bin/freetype.dll"], "bin", category=Categories.run)
+            files.add(["bin/freetyped.dll"], "bin", category=Categories.run_dbg)
         else:
             if self.context.os_name == "mac":
-                files.add(["lib/*.dylib"], "lib", category="rel")
+                files.add(["lib/*.dylib"], "lib", category=Categories.run)
             else:
-                files.add(["lib/*.so"], "lib", category="rel")
+                files.add(["lib/*.so"], "lib", category=Categories.run)
         
         return files
 

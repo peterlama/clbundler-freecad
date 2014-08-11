@@ -36,10 +36,10 @@ class soqt(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/Inventor/Qt"], "include/Inventor", category="dev")
-        files.add(["lib/*"], "lib", category="dev")
-        files.add(["bin/*[!d].dll"], "bin", category="rel")
-        files.add(["bin/*d.dll"], "bin", category="dbg")
+        files.add(["include/Inventor/Qt"], "include/Inventor", category=Categories.build)
+        files.add(["lib/*"], "lib", category=Categories.build)
+        files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
+        files.add(["bin/*d.dll"], "bin", category=Categories.run_dbg)
         
         return files
         

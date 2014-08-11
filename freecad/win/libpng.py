@@ -26,10 +26,10 @@ class libpng(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/png.h", "include/pngconf.h", "include/pnglibconf.h"], "include", category="dev")
-        files.add(["lib/*.lib"], "lib", category="dev")
-        files.add(["lib/libpng"], "lib/cmake", category="dev")
-        files.add(["bin/libpng16.dll"], "bin", category="rel")
-        files.add(["bin/libpng16d.dll"], "bin", category="dbg")
+        files.add(["include/png.h", "include/pngconf.h", "include/pnglibconf.h"], "include", category=Categories.build)
+        files.add(["lib/*.lib"], "lib", category=Categories.build)
+        files.add(["lib/libpng"], "lib/cmake", category=Categories.build)
+        files.add(["bin/libpng16.dll"], "bin", category=Categories.run)
+        files.add(["bin/libpng16d.dll"], "bin", category=Categories.run_dbg)
         
         return files

@@ -24,9 +24,9 @@ class zlib(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/*"], "lib", category="dev")
-        files.add(["bin/zlib.dll"], "bin", category="rel")
-        files.add(["bin/zlibd.dll"], "bin", category="dbg")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/*"], "lib", category=Categories.build)
+        files.add(["bin/zlib.dll"], "bin", category=Categories.run)
+        files.add(["bin/zlibd.dll"], "bin", category=Categories.run_dbg)
         
         return files

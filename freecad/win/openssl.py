@@ -26,9 +26,9 @@ class openssl(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/*.lib"], "lib", category="dev")
-        files.add(["lib/engines"], "lib", category="rel")
-        files.add(["bin/*"], "bin", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/*.lib"], "lib", category=Categories.build)
+        files.add(["lib/engines"], "lib", category=Categories.run)
+        files.add(["bin/*"], "bin", category=Categories.run)
         
         return files

@@ -21,7 +21,7 @@ class xerces_c(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/*.dylib"], "lib", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/*.dylib"], "lib", category=Categories.run)
         
         return files

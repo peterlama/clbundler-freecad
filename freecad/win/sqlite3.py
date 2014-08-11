@@ -16,7 +16,7 @@ class sqlite3(Formula):
         system.run_cmd("lib", ["sqlite3.obj"])
         
         files = FileSet()
-        files.add(["sqlite3.h", "sqlite3ext.h"], "include", category="dev")
-        files.add(["sqlite3.lib"], "lib", category="dev")
+        files.add(["sqlite3.h", "sqlite3ext.h"], "include", category=Categories.build)
+        files.add(["sqlite3.lib"], "lib", category=Categories.build)
         
         return files

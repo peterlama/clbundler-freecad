@@ -28,10 +28,10 @@ class shiboken(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/cmake/*"], "lib/cmake", category="dev")
-        files.add(["lib/*.dylib"], "lib", category="dev")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/cmake/*"], "lib/cmake", category=Categories.build)
+        files.add(["lib/*.dylib"], "lib", category=Categories.build)
         files.add(["lib/python2.7/site-packages/*"], "lib/pytyhon2.7/site-packages")
-        files.add(["bin/*"], "bin", category="rel")
+        files.add(["bin/*"], "bin", category=Categories.run)
         
         return files

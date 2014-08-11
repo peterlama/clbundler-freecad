@@ -16,10 +16,10 @@ class pthreads(Formula):
         system.run_cmd("nmake", ["VC"])
         
         files = FileSet()
-        files.add(["pthread.h", "sched.h"], "include", category="dev")
-        files.add(["pthreadVC2.lib", "pthreadVC2d.lib"], "lib", category="dev")
-        files.add(["pthreadVC2.dll"], "bin", category="rel")
-        files.add(["pthreadVC2d.dll"], "bin", category="dbg")
+        files.add(["pthread.h", "sched.h"], "include", category=Categories.build)
+        files.add(["pthreadVC2.lib", "pthreadVC2d.lib"], "lib", category=Categories.build)
+        files.add(["pthreadVC2.dll"], "bin", category=Categories.run)
+        files.add(["pthreadVC2d.dll"], "bin", category=Categories.run_dbg)
         
         return files
         

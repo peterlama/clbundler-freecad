@@ -30,12 +30,12 @@ class pyside(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/cmake/*"], "lib/cmake", category="dev")
-        files.add(["lib/*.lib"], "lib", category="dev")
-        files.add(["bin/*[!d].dll"], "bin", category="rel")
-        files.add(["bin/*_d.dll"], "bin", category="dbg")
-        files.add(["bin/PySide/*[!d].pyd", "bin/PySide/*.py"], "bin/PySide", category="rel")
-        files.add(["bin/PySide/*_d.pyd"], "bin/PySide", category="dbg")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/cmake/*"], "lib/cmake", category=Categories.build)
+        files.add(["lib/*.lib"], "lib", category=Categories.build)
+        files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
+        files.add(["bin/*_d.dll"], "bin", category=Categories.run_dbg)
+        files.add(["bin/PySide/*[!d].pyd", "bin/PySide/*.py"], "bin/PySide", category=Categories.run)
+        files.add(["bin/PySide/*_d.pyd"], "bin/PySide", category=Categories.run_dbg)
         
         return files

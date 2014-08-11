@@ -33,12 +33,12 @@ class tk(Formula):
                    "generic\\tkPort.h",
                    "win\\tkWinPort.h",
                    "win\\tkWinInt.h",
-                   "win\\tkWin.h"], "include", category="dev")
+                   "win\\tkWin.h"], "include", category=Categories.build)
         
         os.chdir(self.context.install_dir)
                 
-        files.add(["include/*"], "include", category="dev")
-        files.add(["lib/*"], "lib", category="dev")
-        files.add(["bin/*"], "bin", category="rel")
+        files.add(["include/*"], "include", category=Categories.build)
+        files.add(["lib/*"], "lib", category=Categories.build)
+        files.add(["bin/*"], "bin", category=Categories.run)
         
         return files

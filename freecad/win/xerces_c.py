@@ -28,16 +28,16 @@ class xerces_c(Formula):
         files = FileSet()
         files.add(["src/xercesc/**/*.h",
                    "src/xercesc/**/*.hpp",
-                   "src/xercesc/**/*.c"], "include/xercesc", category="dev")
+                   "src/xercesc/**/*.c"], "include/xercesc", category=Categories.build)
         
         if self.context.arch == "x64":
             os.chdir("Build/Win64/" + vc_dir)
         else:
             os.chdir("Build/Win32/" + vc_dir)
         
-        files.add(["Release/*.lib"], "lib", category="dev")
-        files.add(["Debug/*.lib"], "lib", category="dev")
-        files.add(["Release/*.dll"], "bin", category="rel")
-        files.add(["Debug/*.dll"], "bin", category="dbg")
+        files.add(["Release/*.lib"], "lib", category=Categories.build)
+        files.add(["Debug/*.lib"], "lib", category=Categories.build)
+        files.add(["Release/*.dll"], "bin", category=Categories.run)
+        files.add(["Debug/*.dll"], "bin", category=Categories.run_dbg)
         
         return files

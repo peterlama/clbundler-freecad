@@ -20,6 +20,6 @@ class eigen(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/*"], "include", category="dev")
+        files.add(["include/*"], "include", category=Categories.build)
         
         return files

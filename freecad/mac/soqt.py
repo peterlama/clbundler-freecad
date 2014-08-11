@@ -24,10 +24,10 @@ class soqt(Formula):
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["include/Inventor/Qt"], "include/Inventor", category="dev")
-        files.add(["bin/soqt-config"], "bin", category="dev")
-        files.add(["lib/*.dylib"], "lib", category="rel")
-        files.add(["share/Coin/conf/*"], "share/Coin/conf", category="rel")
+        files.add(["include/Inventor/Qt"], "include/Inventor", category=Categories.build)
+        files.add(["bin/soqt-config"], "bin", category=Categories.build)
+        files.add(["lib/*.dylib"], "lib", category=Categories.run)
+        files.add(["share/Coin/conf/*"], "share/Coin/conf", category=Categories.run)
         
         return files
         
