@@ -17,7 +17,7 @@ class qt(Formula):
         
     def build(self):
         if self.context.toolchain == "vc12":
-            mkspec = "win32-msvc2012"
+            mkspec = "win32-msvc2013"
         elif self.context.toolchain == "vc9":
             mkspec = "win32-msvc2008"
         elif self.context.os_name == "mac":
@@ -35,7 +35,6 @@ class qt(Formula):
         configure_options = ["-opensource",
                              "-confirm-license",
                              "-platform", mkspec,
-                             "-release",
                              "-no-qt3support",
                              "-no-phonon",
                              "-no-multimedia",
@@ -43,28 +42,22 @@ class qt(Formula):
                              "-nomake", "examples",
                              "-nomake", "demos",
                              "-nomake", "docs"]
-        if self.context.toolchain.startswith("vc"):
-            configure_options.append("-mp")
-            configure_options.append("-no-vcproj")
-        if self.context.os_name == "mac":
-            configure_options.append("-no-framework")
-        
-        configure(self.context, configure_options)
-        
-        if self.context.toolchain.startswith("vc"):
-            system.run_cmd("jom", ["-j4"])
-        else:
-            system.run_cmd("make", ["-j4"])
-            system.run_cmd("make", ["install"])
-        
+                             
         files = FileSet()
-        
         plugins_exclude = ["plugins/bearer/*",
                            "plugins/designer/*",
                            "plugins/graphicssystems/*",
                            "plugins/qmltooling/*"]
         
         if self.context.toolchain.startswith("vc"):
+            configure_options.append("-debug-and-release")
+            configure_options.append("-mp")
+            configure_options.append("-no-vcproj")
+            
+            system.run_cmd("configure", configure_options)
+            
+            system.run_cmd("jom", ["-j4"])
+            
             #no install target -- copy files from source tree
             exclude = ["include/phonon",
                        "include/phonon_compat",
@@ -89,6 +82,15 @@ class qt(Formula):
             
             files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
         else:
+            configure_options.append("-release")
+            if self.context.os_name == "mac":
+                configure_options.append("-no-framework")
+            
+            configure(self.context, configure_options)
+            
+            system.run_cmd("make", ["-j4"])
+            system.run_cmd("make", ["install"])
+        
             os.chdir(self.context.install_dir)
             files.add(["include/*"], "include", category=Categories.build)
             files.add(["lib/*.dylib"], "lib")
@@ -101,4 +103,3 @@ class qt(Formula):
         files.add(["qt.conf"], "bin")
         
         return files
-
