@@ -25,12 +25,16 @@ class shiboken(Formula):
                              "CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE":".",
                              "CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG":"."})
         
-        vcbuild(self.context, "cmake_build\\shiboken.sln", "Debug")
-        vcbuild(self.context, "cmake_build\\shiboken.sln", "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, "cmake_build\\shiboken.sln", "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, "cmake_build\\shiboken.sln", "Release")
         
         vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
-        vcbuild(self.context, vcproj, "Debug")
-        vcbuild(self.context, vcproj, "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, vcproj, "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "Release")
         
         os.chdir(self.context.install_dir)
         

@@ -50,7 +50,11 @@ class qt(Formula):
                            "plugins/qmltooling/*"]
         
         if self.context.toolchain.startswith("vc"):
-            configure_options.append("-debug-and-release")
+            if self.variant == "release+debug":
+                configure_options.append("-debug-and-release")
+            else:
+                configure_options.append("-" + self.variant)
+            
             configure_options.append("-mp")
             configure_options.append("-no-vcproj")
             

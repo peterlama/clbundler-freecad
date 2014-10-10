@@ -23,8 +23,10 @@ class netgen(Formula):
         if self.context.toolchain == "vc12":
             vcproj = vcproj_upgrade(vcproj)
         
-        vcbuild(self.context, vcproj, "Debug(OCC)")
-        vcbuild(self.context, vcproj, "Release(OCC)")
+        if "debug" in self.variant:
+            vcbuild(self.context, vcproj, "Debug(OCC)")
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "Release(OCC)")
         
         files = FileSet()
         files.add(["nglib/nglib.h"], "include", category=Categories.build)

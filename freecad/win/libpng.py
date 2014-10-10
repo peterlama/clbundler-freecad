@@ -16,12 +16,16 @@ class libpng(Formula):
     def build(self):
         cmake(self.context, {"PNG_STATIC":"OFF"})
         
-        vcbuild(self.context, "cmake_build\\libpng.sln", "Debug")
-        vcbuild(self.context, "cmake_build\\libpng.sln", "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, "cmake_build\\libpng.sln", "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, "cmake_build\\libpng.sln", "Release")
         
         vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
-        vcbuild(self.context, vcproj, "Debug")
-        vcbuild(self.context, vcproj, "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, vcproj, "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "Release")
         
         os.chdir(self.context.install_dir)
         

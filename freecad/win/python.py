@@ -25,8 +25,10 @@ class python(Formula):
         os.chdir("PCbuild")
         
         #ignore errors because we don't need the modules that fail to build
-        vcbuild(self.context, "pcbuild.sln", "Debug", ignore_errors=True)
-        vcbuild(self.context, "pcbuild.sln", "Release", ignore_errors=True)
+        if "debug" in self.variant:
+            vcbuild(self.context, "pcbuild.sln", "Debug", ignore_errors=True)
+        if "release" in self.variant:
+            vcbuild(self.context, "pcbuild.sln", "Release", ignore_errors=True)
         
         os.chdir("..")
         

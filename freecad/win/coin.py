@@ -22,13 +22,17 @@ class coin(Formula):
         if self.context.toolchain == "vc12":
             vcproj = vcproj_upgrade(vcproj)
         
-        vcbuild(self.context, vcproj, "DLL (Debug)")
-        vcbuild(self.context, vcproj, "DLL (Release)")
+        if "debug" in self.variant:
+            vcbuild(self.context, vcproj, "DLL (Debug)")
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "DLL (Release)")
         
         self.context.env["COINDIR"] = self.context.install_dir
         
-        system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "debug", "msvc9", "coin3"])
-        system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "release", "msvc9", "coin3"])
+        if "debug" in self.variant:
+            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "debug", "msvc9", "coin3"])
+        if "release" in self.variant:
+            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "release", "msvc9", "coin3"])
         
         os.chdir(self.context.install_dir)
         

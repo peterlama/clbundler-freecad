@@ -19,9 +19,14 @@ class boost(Formula):
         system.run_cmd("bootstrap.bat")
         
         toolset = "toolset=msvc-" + vc_version(self.context.toolchain) + ".0"
+        if self.variant == "release+debug":
+            variants = "release,debug"
+        else:
+            variants = self.variant
+        
         system.run_cmd("b2.exe", [toolset, 
                                   "link=shared",
-                                  "variant=debug,release",
+                                  "variant=" + variants,
                                   "--with-filesystem",
                                   "--with-program_options",
                                   "--with-regex",

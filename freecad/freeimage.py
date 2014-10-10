@@ -17,12 +17,16 @@ class freeimage(Formula):
         cmake(self.context, {"BUILD_SHARED_LIBS":"ON", "CMAKE_BUILD_TYPE":"Release"})
         
         if self.context.toolchain.startswith("vc"):
-            vcbuild(self.context, "cmake_build\\freeimage.sln", "Debug")
-            vcbuild(self.context, "cmake_build\\freeimage.sln", "Release")
+            if "debug" in self.variant:
+                vcbuild(self.context, "cmake_build\\freeimage.sln", "Debug")
+            if "release" in self.variant:
+                vcbuild(self.context, "cmake_build\\freeimage.sln", "Release")
             
             vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
-            vcbuild(self.context, vcproj, "Debug")
-            vcbuild(self.context, vcproj, "Release")
+            if "debug" in self.variant:
+                vcbuild(self.context, vcproj, "Debug")
+            if "release" in self.variant:
+                vcbuild(self.context, vcproj, "Release")
         else:
             os.chdir("cmake_build")
             system.run_cmd("make", ["-j4"])

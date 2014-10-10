@@ -21,9 +21,11 @@ class xerces_c(Formula):
             vcproj = "projects/Win32/VC9/xerces-all/XercesLib/XercesLib.vcproj"
             vc_dir = "VC9"
             extra = []
-               
-        vcbuild(self.context, vcproj, "Debug", extra=extra)
-        vcbuild(self.context, vcproj, "Release", extra=extra)
+        
+        if "debug" in self.variant:        
+            vcbuild(self.context, vcproj, "Debug", extra=extra)
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "Release", extra=extra)
         
         files = FileSet()
         files.add(["src/xercesc/**/*.h",

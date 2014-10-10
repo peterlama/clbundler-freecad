@@ -53,12 +53,16 @@ class oce(Formula):
         cmake(self.context, cmake_options)
         
         if self.context.toolchain.startswith("vc"):
-            vcbuild(self.context, "cmake_build\\OCE.sln", "Debug")
-            vcbuild(self.context, "cmake_build\\OCE.sln", "Release")
+            if "debug" in self.variant:
+                vcbuild(self.context, "cmake_build\\OCE.sln", "Debug")
+            if "release" in self.variant:
+                vcbuild(self.context, "cmake_build\\OCE.sln", "Release")
             
             vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
-            vcbuild(self.context, vcproj, "Debug")
-            vcbuild(self.context, vcproj, "Release")
+            if "debug" in self.variant:
+                vcbuild(self.context, vcproj, "Debug")
+            if "release" in self.variant:
+                vcbuild(self.context, vcproj, "Release")
         else:
             os.chdir("cmake_build")
             system.run_cmd("make", ["-j4"])

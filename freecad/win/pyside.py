@@ -20,12 +20,16 @@ class pyside(Formula):
         cmake(self.context, {"SITE_PACKAGE":py_site_packages,
                              "BUILD_TESTS":"OFF"})
         
-        vcbuild(self.context, "cmake_build\\pysidebindings.sln", "Debug")
-        vcbuild(self.context, "cmake_build\\pysidebindings.sln", "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, "cmake_build\\pysidebindings.sln", "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, "cmake_build\\pysidebindings.sln", "Release")
         
         vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
-        vcbuild(self.context, vcproj, "Debug")
-        vcbuild(self.context, vcproj, "Release")
+        if "debug" in self.variant:
+            vcbuild(self.context, vcproj, "Debug")
+        if "release" in self.variant:
+            vcbuild(self.context, vcproj, "Release")
         
         os.chdir(self.context.install_dir)
         

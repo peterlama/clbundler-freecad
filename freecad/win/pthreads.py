@@ -12,8 +12,10 @@ class pthreads(Formula):
         super(pthreads, self).__init__(context, options)
         
     def build(self):
-        system.run_cmd("nmake", ["VC-debug"])
-        system.run_cmd("nmake", ["VC"])
+        if "debug" in self.variant:
+            system.run_cmd("nmake", ["VC-debug"])
+        if "release" in self.variant:
+            system.run_cmd("nmake", ["VC"])
         
         files = FileSet()
         files.add(["pthread.h", "sched.h"], "include", category=Categories.build)
