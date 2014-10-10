@@ -16,10 +16,8 @@ class qt(Formula):
             self.patches.append("vc12")
         
     def build(self):
-        if self.context.toolchain == "vc12":
-            mkspec = "win32-msvc2013"
-        elif self.context.toolchain == "vc9":
-            mkspec = "win32-msvc2008"
+        if self.context.toolchain.startswith("vc"):
+            mkspec = "win32-msvc" + vc_version_year(self.context.toolchain)
         elif self.context.os_name == "mac":
             mkspec = "macx-g++42"
 
@@ -60,7 +58,10 @@ class qt(Formula):
             
             system.run_cmd("configure", configure_options)
             
-            system.run_cmd("jom", ["-j4"])
+            try:
+                system.run_cmd("jom", ["-j4"])
+            except exceptions.CommandNotFoundError:
+                system.run_cmd("nmake")
             
             #no install target -- copy files from source tree
             exclude = ["include/phonon",
