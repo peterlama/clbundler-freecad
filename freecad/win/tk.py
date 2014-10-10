@@ -15,7 +15,7 @@ class tk(Formula):
         
     def build(self):
         #tk requires some tcl source files
-        self.context.env["TCLDIR"] = os.path.join(self.context.workspace_dir,
+        self.context.env["TCLDIR"] = os.path.join(self.context.build_dir,
                                                   "tcl-" + self.version)
         
         os.chdir("win")
