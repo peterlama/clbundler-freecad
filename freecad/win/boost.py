@@ -15,6 +15,12 @@ class boost(Formula):
         if context.toolchain == "vc12":
             self.patches.append("vc12")
         
+        self.add_option("with_libraries", ["filesystem",
+                                           "program_options",
+                                           "regex",
+                                           "signals",
+                                           "system",
+                                           "thread"])
     def build(self):
         system.run_cmd("bootstrap.bat")
         
@@ -27,12 +33,7 @@ class boost(Formula):
         system.run_cmd("b2.exe", [toolset, 
                                   "link=shared",
                                   "variant=" + variants,
-                                  "--with-filesystem",
-                                  "--with-program_options",
-                                  "--with-regex",
-                                  "--with-signals", 
-                                  "--with-system",
-                                  "--with-thread"])
+                                  "--with-libraries=" + ",".join(self.with_libraries)])
         
         files = FileSet()
         files.add(["boost"], "include", category=Categories.build)
