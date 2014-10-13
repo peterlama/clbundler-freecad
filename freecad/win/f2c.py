@@ -11,7 +11,7 @@ class f2c(Formula):
     def __init__(self, context, options={}):
         super(f2c, self).__init__(context, options)
         
-        self.add_deps(["libf2c"])
+        self.add_deps("libf2c")
         
     def build(self):
         os.chdir("src")

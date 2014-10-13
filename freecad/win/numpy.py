@@ -11,7 +11,7 @@ class numpy(Formula):
     def __init__(self, context, options={}):
         super(numpy, self).__init__(context, options)
         
-        self.add_deps(["python"])
+        self.add_deps("python")
         
     def build(self):
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include\python2.7;"

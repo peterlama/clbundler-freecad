@@ -11,7 +11,7 @@ class pip(Formula):
     def __init__(self, context, options={}):
         super(pip, self).__init__(context, options)
         
-        self.add_deps(["python"])
+        self.add_deps("python")
         
     def build(self):
         distutils(self.context)

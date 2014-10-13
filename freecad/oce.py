@@ -11,7 +11,7 @@ class oce(Formula):
     def __init__(self, context, options={}):
         super(oce, self).__init__(context, options)
         
-        self.add_deps(["freeimage", "freetype", "tk"])
+        self.add_deps("freeimage", "freetype", "tk")
         	
         if(context.os_name == "win"):
             self.patches.extend(["remove_auto_link_tcl"])

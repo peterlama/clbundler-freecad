@@ -12,7 +12,7 @@ class shiboken(Formula):
     def __init__(self, context, options={}):
         super(shiboken, self).__init__(context, options)
         
-        self.add_deps(["python", "qt"])
+        self.add_deps("python", "qt")
         
         self.patches = ["suffix", "relative_install"]
         if context.toolchain == "vc12":

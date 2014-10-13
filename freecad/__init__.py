@@ -6,7 +6,7 @@ class freecad(Formula):
         
         self.is_kit = True
         
-        self.add_deps([
+        self.add_deps(
             "boost",
             "coin",
             "eigen",
@@ -18,8 +18,8 @@ class freecad(Formula):
             "qt",
             "soqt",
             "xerces_c"
-        ])
+        )
 
         if context.os_name == "win":
-            self.add_deps(["netgen"])
+            self.add_deps("netgen")
 

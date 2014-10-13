@@ -15,7 +15,7 @@ class matplotlib(Formula):
         
         self.patches = ["bundle_libs"]
         
-        self.add_deps(["freetype", "libpng", "pyside"])
+        self.add_deps("freetype", "libpng", "pyside")
         
     def build(self):
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include;"

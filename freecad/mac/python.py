@@ -11,7 +11,7 @@ class python(Formula):
     def __init__(self, context, options={}):
         super(python, self).__init__(context, options)
         
-        self.add_deps(["tk"])
+        self.add_deps("tk")
         
     def build(self):
         configure(self.context, ["--with-tcltk-includes='-I" + self.context.bundle_path + "/include'", 

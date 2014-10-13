@@ -12,7 +12,7 @@ class netgen(Formula):
     def __init__(self, context, options={}):
         super(netgen, self).__init__(context, options)
         
-        self.add_deps(["oce", "pthreads", "zlib"])
+        self.add_deps("oce", "pthreads", "zlib")
         
         self.patches = ["vcproj", "dllexport", "occ67"]
         

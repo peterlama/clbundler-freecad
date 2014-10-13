@@ -11,7 +11,7 @@ class libpng(Formula):
     def __init__(self, context, options={}):
         super(libpng, self).__init__(context, options)
         
-        self.add_deps(["zlib"])
+        self.add_deps("zlib")
         
     def build(self):
         cmake(self.context, {"PNG_STATIC":"OFF"})

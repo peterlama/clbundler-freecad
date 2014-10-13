@@ -11,7 +11,7 @@ class python(Formula):
     def __init__(self, context, options={}):
         super(python, self).__init__(context, options)
         
-        self.add_deps(["openssl", "sqlite3", "tk"])
+        self.add_deps("openssl", "sqlite3", "tk")
         
         self.patches = ["pyconfig"]
         if context.toolchain == "vc12":

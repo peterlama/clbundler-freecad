@@ -12,7 +12,7 @@ class pyside(Formula):
     def __init__(self, context, options={}):
         super(pyside, self).__init__(context, options)
         
-        self.add_deps(["python", "qt", "shiboken"])
+        self.add_deps("python", "qt", "shiboken")
         self.patches = ["clbundler_changes", "relative_install"]
         
     def build(self):

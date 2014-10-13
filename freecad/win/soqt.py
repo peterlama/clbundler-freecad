@@ -11,7 +11,7 @@ class soqt(Formula):
     def __init__(self, context, options={}):
         super(soqt, self).__init__(context, options)
         
-        self.add_deps(["coin", "qt"])
+        self.add_deps("coin", "qt")
         
         self.patches.append("vcproj_x64")
         

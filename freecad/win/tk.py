@@ -11,7 +11,7 @@ class tk(Formula):
     def __init__(self, context, options={}):
         super(tk, self).__init__(context, options)
         
-        self.add_deps(["tcl"])
+        self.add_deps("tcl")
         
     def build(self):
         #tk requires some tcl source files
