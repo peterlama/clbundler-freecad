@@ -5440,10 +5440,10 @@ index 0000000..7ed642b
 +    <opensslDir>$(externalsDir)\openssl-1.0.1g</opensslDir>
 +    <tcltkDir>$(BUNDLE_PATH)</tcltkDir>
 +    <tcltk64Dir>$(BUNDLE_PATH)</tcltk64Dir>
-+    <tcltkLib>$(tcltkDir)\lib\tcl86t.lib;$(tcltkDir)\lib\tk86t.lib</tcltkLib>
-+    <tcltkLibDebug>$(tcltkDir)\lib\tcl86t.lib;$(tcltkDir)\lib\tk86t.lib</tcltkLibDebug>
-+    <tcltk64Lib>$(tcltk64Dir)\lib\tcl86t.lib;$(tcltk64Dir)\lib\tk86t.lib</tcltk64Lib>
-+    <tcltk64LibDebug>$(tcltk64Dir)\lib\tcl86t.lib;$(tcltk64Dir)\lib\tk86t.lib</tcltk64LibDebug>
++    <tcltkLib>$(tcltkDir)\lib\tcl86.lib;$(tcltkDir)\lib\tk86.lib</tcltkLib>
++    <tcltkLibDebug>$(tcltkDir)\lib\tcl86.lib;$(tcltkDir)\lib\tk86.lib</tcltkLibDebug>
++    <tcltk64Lib>$(tcltk64Dir)\lib\tcl86.lib;$(tcltk64Dir)\lib\tk86.lib</tcltk64Lib>
++    <tcltk64LibDebug>$(tcltk64Dir)\lib\tcl86.lib;$(tcltk64Dir)\lib\tk86.lib</tcltk64LibDebug>
 +  </PropertyGroup>
 +  <PropertyGroup>
 +    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>

@@ -13,10 +13,11 @@ class tcl(Formula):
         
     def build(self):
         os.chdir("win")
-        system.run_cmd("nmake", ["/f", "makefile.vc"])
+        system.run_cmd("nmake", ["/f", "makefile.vc", "SUFX="])
         
         system.run_cmd("nmake", ["/f", "makefile.vc",
                                  "INSTALLDIR=" + self.context.install_dir, 
+                                 "SUFX=",
                                  "install"])
         os.chdir("..")
                 

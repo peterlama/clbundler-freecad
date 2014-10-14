@@ -18,18 +18,7 @@ class oce(Formula):
         
     def build(self):
         ft_include_dir = os.path.join(self.context.bundle_path, "include", "freetype2")
-        tcl_include_dir = os.path.join(self.context.bundle_path, "include")
-        if self.context.os_name == "win":
-            tcl_lib = os.path.join(self.context.bundle_path, "lib", "tcl86t.lib")
-            tcl_tclsh = os.path.join(self.context.bundle_path, "bin", "tclsh86t.exe")
-            tk_lib = os.path.join(self.context.bundle_path, "lib", "tk86t.lib")
-            tk_wish = os.path.join(self.context.bundle_path, "bin", "tkwish86t.exe")
-        else:
-            tcl_lib = os.path.join(self.context.bundle_path, "lib", "libtcl8.6.dylib")
-            tcl_tclsh = os.path.join(self.context.bundle_path, "bin", "tclsh8.6")
-            tk_lib = os.path.join(self.context.bundle_path, "lib", "libtk8.6.dylib")
-            tk_wish = os.path.join(self.context.bundle_path, "bin", "wish8.6")
-
+        
         cmake_options = {"OCE_INSTALL_PREFIX":self.context.install_dir,
                          "OCE_INSTALL_BIN_DIR":"bin",
                          "OCE_INSTALL_LIB_DIR":"lib",
@@ -37,13 +26,8 @@ class oce(Formula):
                          "OCE_DRAW":"ON",
                          "OCE_WITH_FREEIMAGE":"ON",
                          "OCE_USE_PCH":"ON",
-                         "FREETYPE_INCLUDE_DIRS":ft_include_dir,
-                         "TCL_INCLUDE_PATH":tcl_include_dir,
-                         "TCL_LIBRARY":tcl_lib,
-                         "TCL_TCLSH":tcl_tclsh,
-                         "TK_INCLUDE_PATH":tcl_include_dir,
-                         "TK_LIBRARY":tk_lib,
-                         "TK_WISH":tk_wish}
+                         "FREETYPE_INCLUDE_DIRS":ft_include_dir}
+        
         if self.context.toolchain.startswith("vc"):
             cmake_options["OCE_USE_MSVC_EXPRESS"] = "ON"
             cmake_options["OCE_COPY_HEADERS_BUILD"] = "ON"

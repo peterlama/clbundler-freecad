@@ -269,22 +269,22 @@
  	<UserMacro
  		Name="tcltkLib"
 -		Value="$(tcltkDir)\lib\tcl85.lib $(tcltkDir)\lib\tk85.lib"
-+		Value="$(tcltkDir)\lib\tcl86t.lib $(tcltkDir)\lib\tk86t.lib"
++		Value="$(tcltkDir)\lib\tcl86.lib $(tcltkDir)\lib\tk86.lib"
  	/>
  	<UserMacro
  		Name="tcltkLibDebug"
 -		Value="$(tcltkDir)\lib\tcl85g.lib $(tcltkDir)\lib\tk85g.lib"
-+		Value="$(tcltkDir)\lib\tcl86t.lib $(tcltkDir)\lib\tk86t.lib"
++		Value="$(tcltkDir)\lib\tcl86.lib $(tcltkDir)\lib\tk86.lib"
  	/>
  	<UserMacro
  		Name="tcltk64Lib"
 -		Value="$(tcltk64Dir)\lib\tcl85.lib $(tcltk64Dir)\lib\tk85.lib"
-+		Value="$(tcltk64Dir)\lib\tcl86t.lib $(tcltk64Dir)\lib\tk86t.lib"
++		Value="$(tcltk64Dir)\lib\tcl86.lib $(tcltk64Dir)\lib\tk86.lib"
  	/>
  	<UserMacro
  		Name="tcltk64LibDebug"
 -		Value="$(tcltk64Dir)\lib\tcl85g.lib $(tcltk64Dir)\lib\tk85g.lib"
-+		Value="$(tcltk64Dir)\lib\tcl86t.lib $(tcltk64Dir)\lib\tk86t.lib"
++		Value="$(tcltk64Dir)\lib\tcl86.lib $(tcltk64Dir)\lib\tk86.lib"
  	/>
  </VisualStudioPropertySheet>
 --- python-2.7.7/PCbuild/_sqlite3.vcproj	Sat May 31 11:58:40 2014

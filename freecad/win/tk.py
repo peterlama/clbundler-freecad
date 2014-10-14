@@ -19,10 +19,11 @@ class tk(Formula):
                                                   "tcl-" + self.version)
         
         os.chdir("win")
-        system.run_cmd("nmake", ["/f", "makefile.vc"])
+        system.run_cmd("nmake", ["/f", "makefile.vc", "SUFX="])
         
         system.run_cmd("nmake", ["/f", "makefile.vc",
-                                 "_INSTALLDIR=" + self.context.install_dir, 
+                                 "_INSTALLDIR=" + self.context.install_dir,
+                                 "SUFX=",                                 
                                  "install"])
         os.chdir("..")
         
