@@ -34,7 +34,7 @@ class python(Formula):
         
         files = FileSet()
         files.add(["Include/*"], "include/python2.7", category=Categories.build)
-        files.add(["Lib"], "bin", category=Categories.run)
+        files.add(["Lib/*"], "bin/Lib", category=Categories.run)
         files.add(["PC/pyconfig.h"], "include/python2.7", category=Categories.build)
         
         os.chdir("PCbuild")
