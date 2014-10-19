@@ -15,7 +15,10 @@ class boost(Formula):
         if context.toolchain == "vc12":
             self.patches.append("vc12")
         
-        self.add_option("with_libraries", ["filesystem",
+        self.add_option("with_libraries", ["chrono",
+                                           "date_time",
+                                           "filesystem",
+                                           "iostreams",
                                            "program_options",
                                            "regex",
                                            "signals",
@@ -29,11 +32,15 @@ class boost(Formula):
             variants = "release,debug"
         else:
             variants = self.variant
+        bit = "32"
+        if self.context.arch == "x64":
+            bit = "64"
         
-        system.run_cmd("b2.exe", [toolset, 
-                                  "link=shared",
-                                  "variant=" + variants,
-                                  "--with-libraries=" + ",".join(self.with_libraries)])
+        options = [toolset, "link=shared", "variant=" + variants, "address-model=" + bit]
+        for n in self.with_libraries:
+            options.append("--with-" + n)
+        
+        system.run_cmd("b2.exe", options)
         
         files = FileSet()
         files.add(["boost"], "include", category=Categories.build)
