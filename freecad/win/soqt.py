@@ -1,26 +1,24 @@
 from clbundler.formula import *
         
 class soqt(Formula):
-    version = "1.5.0"
+    version = "1.6.0a"
     source = {
-        "type":"archive", 
-        "url":"https://bitbucket.org/Coin3D/coin/downloads/SoQt-{0}.tar.gz".format(version)
+        "type":"hg", 
+        "url":"https://bitbucket.org/Coin3D/soqt"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(soqt, self).__init__(context, options)
         
         self.add_deps("coin", "qt")
         
-        self.patches.append("vcproj_x64")
+        self.patches.append("vcproj_x64_coin4")
         
     def build(self):
         os.chdir("build\\msvc9")
         
         vcproj = "soqt1.vcproj"
-        if self.context.toolchain == "vc12":
-            vcproj = vcproj_upgrade(vcproj)
         
         self.context.env["QTDIR"] = self.context.bundle_path
         self.context.env["COINDIR"] = self.context.bundle_path
