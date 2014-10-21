@@ -1,0 +1,23 @@
+diff --git a/src/cpp/flann/util/serialization.h b/src/cpp/flann/util/serialization.h
+index 8c07630..adc7cdb 100644
+--- a/src/cpp/flann/util/serialization.h
++++ b/src/cpp/flann/util/serialization.h
+@@ -102,16 +102,15 @@ BASIC_TYPE_SERIALIZER(int);
+ BASIC_TYPE_SERIALIZER(unsigned int);
+ BASIC_TYPE_SERIALIZER(long);
+ BASIC_TYPE_SERIALIZER(unsigned long);
+-BASIC_TYPE_SERIALIZER(unsigned long long);
+ BASIC_TYPE_SERIALIZER(float);
+ BASIC_TYPE_SERIALIZER(double);
+ BASIC_TYPE_SERIALIZER(bool);
+ #ifdef _MSC_VER
+ // unsigned __int64 ~= unsigned long long
+ // Will throw error on VS2013
+-#if _MSC_VER != 1800
+ BASIC_TYPE_SERIALIZER(unsigned __int64);
+-#endif
++#else
++BASIC_TYPE_SERIALIZER(unsigned long long);
+ #endif
+ 
+ 

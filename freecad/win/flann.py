@@ -11,7 +11,9 @@ class flann(Formula):
     
     def __init__(self, context, options={}):
         super(flann, self).__init__(context, options)
-       
+        
+        self.patches = ["msvc_int64"]
+        
     def build(self):
         cmake(self.context, {"BUILD_TESTS":"OFF", 
                              "BUILD_EXAMPLES":"OFF", 
