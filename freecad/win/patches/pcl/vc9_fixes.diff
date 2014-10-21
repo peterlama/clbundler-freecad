@@ -1,0 +1,36 @@
+diff -ur pcl-1.7.2/tools/gp3_surface.cpp pcl-1.7.2_new/tools/gp3_surface.cpp
+--- pcl-1.7.2/tools/gp3_surface.cpp	Wed Sep 10 14:22:57 2014
++++ pcl-1.7.2_new/tools/gp3_surface.cpp	Sun Oct 19 23:12:20 2014
+@@ -92,7 +92,7 @@
+     if (pcl_isfinite (input->points[i].x))
+       cloud->push_back (input->points[i]);
+ 
+-  cloud->width = static_cast<uint32_t> (cloud->size ());
++  cloud->width = static_cast<boost::uint32_t> (cloud->size ());
+   cloud->height = 1;
+   cloud->is_dense = true;
+ 
+diff -ur pcl-1.7.2/tools/mls_smoothing.cpp pcl-1.7.2_new/tools/mls_smoothing.cpp
+--- pcl-1.7.2/tools/mls_smoothing.cpp	Wed Sep 10 14:22:57 2014
++++ pcl-1.7.2_new/tools/mls_smoothing.cpp	Sun Oct 19 23:13:28 2014
+@@ -100,7 +100,7 @@
+       xyz_cloud->push_back (xyz_cloud_pre->points[i]);
+   xyz_cloud->header = xyz_cloud_pre->header;
+   xyz_cloud->height = 1;
+-  xyz_cloud->width = static_cast<uint32_t> (xyz_cloud->size ());
++  xyz_cloud->width = static_cast<boost::uint32_t> (xyz_cloud->size ());
+   xyz_cloud->is_dense = false;
+   
+   
+diff -ur pcl-1.7.2/common/include/pcl/common/impl/eigen.hpp pcl-1.7.2_new/common/include/pcl/common/impl/eigen.hpp
+--- pcl-1.7.2/common/include/pcl/common/impl/eigen.hpp	Wed Sep 10 14:22:57 2014
++++ pcl-1.7.2_new/common/include/pcl/common/impl/eigen.hpp	Sun Oct 19 21:57:56 2014
+@@ -866,7 +866,7 @@
+                            pcl::ModelCoefficients::Ptr plane_out,
+                      const Eigen::Transform<Scalar, 3, Eigen::Affine> &transformation)
+ {
+-  Eigen::Matrix < Scalar, 4, 1 > v_plane_in (std::vector < Scalar > (plane_in->values.begin (), plane_in->values.end ()).data ());
++  Eigen::Matrix < Scalar, 4, 1 > v_plane_in (&std::vector < Scalar > (plane_in->values.begin (), plane_in->values.end ()).front());
+   pcl::transformPlane (v_plane_in, v_plane_in, transformation);
+   plane_out->values.resize (4);
+   for (int i = 0; i < 4; i++)

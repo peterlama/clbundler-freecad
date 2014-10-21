@@ -13,6 +13,9 @@ class pcl(Formula):
         
         self.add_deps("boost", "flann", "qhull")
         
+        if self.context.toolchain = "vc9":
+            self.patches = ["vc9_fixes"]
+        
     def build(self):
         cmake(self.context, {"PCL_BUILD_WITH_BOOST_DYNAMIC_LINKING_WIN32":"ON"})
         
