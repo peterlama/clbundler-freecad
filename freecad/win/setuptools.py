@@ -20,7 +20,7 @@ class setuptools(Formula):
         
         files = FileSet()
         files.add(["Lib/site-packages/*"], "bin/Lib/site-packages")
-        files.add(["Scripts/*"], "bin/Scripts")
+        files.add(["Scripts/easy_install.exe", "Scripts/easy_install-script.py"], "bin")
         
         return files
         
