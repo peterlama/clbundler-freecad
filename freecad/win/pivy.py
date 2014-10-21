@@ -11,7 +11,7 @@ class pivy(Formula):
     def __init__(self, context, options={}):
         super(pivy, self).__init__(context, options)
         
-        self.add_deps("python", "coin")
+        self.add_deps("python", "coin", "swig")
         
         self.patches = ["no_gui"]
         

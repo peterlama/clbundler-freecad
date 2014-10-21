@@ -10,7 +10,9 @@ class pcl(Formula):
     
     def __init__(self, context, options={}):
         super(pcl, self).__init__(context, options)
-       
+        
+        self.add_deps("boost", "flann", "qhull")
+        
     def build(self):
         cmake(self.context, {"PCL_BUILD_WITH_BOOST_DYNAMIC_LINKING_WIN32":"ON"})
         
