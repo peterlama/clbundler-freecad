@@ -13,6 +13,8 @@ class freecad(Formula):
             "f2c",
             "freetype",
             "oce",
+            "pcl",
+            "pivy",
             "pyside",
             "python",
             "qt",
