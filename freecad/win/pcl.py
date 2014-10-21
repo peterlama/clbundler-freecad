@@ -13,7 +13,7 @@ class pcl(Formula):
         
         self.add_deps("boost", "flann", "qhull")
         
-        if self.context.toolchain = "vc9":
+        if self.context.toolchain == "vc9":
             self.patches = ["vc9_fixes"]
         
     def build(self):
