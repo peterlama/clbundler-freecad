@@ -12,7 +12,8 @@ class openssl(Formula):
         super(openssl, self).__init__(context, options)
         
     def build(self):
-        self.context.env["PATH"] += self.context.bundle_path + "\\bin\\Perl\\bin;"
+        perl_path = system.find_cmd("perl.exe", self.context.env["PATH"])
+        self.context.env["PATH"] += os.path.dirname(perl_path) + ";"
         
         if self.context.arch == "x64":
             system.run_cmd("perl", ["Configure", "--openssldir=" + self.context.install_dir, "no-asm", "VC-WIN64A"])
