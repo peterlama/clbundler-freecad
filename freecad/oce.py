@@ -12,9 +12,6 @@ class oce(Formula):
         super(oce, self).__init__(context, options)
         
         self.add_deps("freeimage", "freetype", "tk")
-        	
-        if(context.os_name == "win"):
-            self.patches.extend(["remove_auto_link_tcl"])
         
     def build(self):
         ft_include_dir = os.path.join(self.context.bundle_path, "include", "freetype2")
