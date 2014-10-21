@@ -15,7 +15,7 @@ class matplotlib(Formula):
         
         self.patches = ["bundle_libs"]
         
-        self.add_deps("freetype", "libpng", "pyside")
+        self.add_deps("setuptools", "numpy", "freetype", "libpng", "pyside")
         
     def build(self):
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include;"
@@ -36,7 +36,9 @@ class matplotlib(Formula):
                        "tkagg = False\n")
             f.write(content)
         
-        system.run_cmd("python", ["setup.py", "install", "--prefix=" + self.context.install_dir])
+        system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "pyparsing"])
+        system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "python-dateutil"])
+        system.run_cmd("python", ["setup.py", "install", "--single-version-externally-managed", "--root=" + self.context.install_dir, "--prefix=."])
         
         os.chdir(self.context.install_dir)
         
