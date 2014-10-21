@@ -1,7 +1,7 @@
 from clbundler.formula import *
         
 class numpy(Formula):
-    version = "1.8.1"
+    version = "1.9.0"
     source = {
         "type":"archive",
         "url":"http://sourceforge.net/projects/numpy/files/NumPy/{0}/numpy-{0}.zip".format(version)
@@ -17,12 +17,12 @@ class numpy(Formula):
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include\python2.7;"
         self.context.env["LIB"] += self.context.bundle_path + "\\lib;"
         system.run_cmd("python", ["setup.py", "build"])
-        #system.run_cmd("python", ["setup.py", "install", "--prefix=" + self.context.install_dir])
+        system.run_cmd("python", ["setup.py", "install", "--prefix=" + self.context.install_dir])
         
         os.chdir(self.context.install_dir)
         
         files = FileSet()
-        files.add(["Lib/site-packages/numpy"], "bin/Lib/site-packages")
+        files.add(["Lib/site-packages/*"], "bin/Lib/site-packages")
         
         return files
         
