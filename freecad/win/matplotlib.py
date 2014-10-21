@@ -2,7 +2,7 @@ from clbundler.formula import *
 from clbundler.fileutils import makedirs
         
 class matplotlib(Formula):
-    version = "1.3.1"
+    version = "1.4.1"
     source = {
         "type":"archive",
         "url":"https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-{0}/"
