@@ -12,6 +12,7 @@ class freecad(Formula):
             "eigen",
             "f2c",
             "freetype",
+            "matplotlib",
             "oce",
             "pcl",
             "pivy",
