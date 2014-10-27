@@ -1,5 +1,6 @@
 from clbundler.formula import *
-        
+from clbundler.exceptions import CommandNotFoundError
+
 class qt(Formula):
     version = "4.8.6"
     source = {
@@ -60,7 +61,7 @@ class qt(Formula):
             
             try:
                 system.run_cmd("jom", ["-j4"])
-            except exceptions.CommandNotFoundError:
+            except CommandNotFoundError:
                 system.run_cmd("nmake")
             
             #no install target -- copy files from source tree
@@ -86,6 +87,7 @@ class qt(Formula):
             files.add(["bin/*d?.dll"], "bin", category=Categories.run_dbg)
             
             files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
+            files.add(["plugins/**/*d?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
         else:
             configure_options.append("-release")
             if self.context.os_name == "mac":
@@ -103,7 +105,7 @@ class qt(Formula):
             files.add(["plugins/*"], "lib/QtPlugins", plugins_exclude)
         
         with open("qt.conf", "w") as f:
-            f.write("[Paths]\nPrefix = ..\nPlugins = lib/QtPlugins\n")
+            f.write("[Paths]\nPrefix = ..\nPlugins = bin/QtPlugins\n")
         
         files.add(["qt.conf"], "bin")
         
