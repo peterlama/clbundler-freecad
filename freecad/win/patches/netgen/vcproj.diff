@@ -1,7 +1,5 @@
-diff --git a/windows/nglib.vcproj b/windows/nglib.vcproj
-index b42ed06..e8db69f 100644
---- a/windows/nglib.vcproj
-+++ b/windows/nglib.vcproj
+--- netgen-5.1/windows/nglib.vcproj	Wed Aug  7 10:09:27 2013
++++ netgen-5.1_new/windows/nglib.vcproj	Sat Oct 25 14:43:09 2014
 @@ -1,7 +1,7 @@
  ﻿<?xml version="1.0" encoding="UTF-8"?>
  <VisualStudioProject
@@ -30,7 +28,7 @@ index b42ed06..e8db69f 100644
  				LinkIncremental="2"
 -				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\lib&quot;"
 +				AdditionalLibraryDirectories="$(BUNDLE_PATH)\lib"
-+                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++               ImportLibrary="$(OutDir)\$(ProjectName)d.lib"
  				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
  				GenerateDebugInformation="true"
  				SubSystem="2"
@@ -61,7 +59,7 @@ index b42ed06..e8db69f 100644
  				LinkIncremental="2"
 -				AdditionalLibraryDirectories="&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\lib&quot;"
 +				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
-+                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++               ImportLibrary="$(OutDir)\$(ProjectName)d.lib"
  				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
  				GenerateDebugInformation="true"
  				SubSystem="2"
@@ -132,7 +130,7 @@ index b42ed06..e8db69f 100644
 -				AdditionalIncludeDirectories="&quot;$(CASROOT)\inc&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthread-w32\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
 -				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=;OCCGEOMETRY;_WIN32_WINNT=0x0502"
 +				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
-+				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;OCCGEOMETRY;_WIN32_WINNT=0x0502"
  				RuntimeLibrary="2"
  				EnableFunctionLevelLinking="true"
  				EnableEnhancedInstructionSet="1"
@@ -155,15 +153,17 @@ index b42ed06..e8db69f 100644
  			/>
  		</Configuration>
  		<Configuration
-@@ -461,7 +470,7 @@
+@@ -461,8 +470,8 @@
  				InlineFunctionExpansion="2"
  				EnableIntrinsicFunctions="true"
  				FavorSizeOrSpeed="1"
 -				AdditionalIncludeDirectories="&quot;$(CASROOT)\inc&quot;;&quot;$(SolutionDir)..\..\ext_libs\pthread-w64\include&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
+-				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=;OCCGEOMETRY;_OCC64;_WIN32_WINNT=0x0502"
 +				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
- 				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=;OCCGEOMETRY;_OCC64;_WIN32_WINNT=0x0502"
++				PreprocessorDefinitions="WNT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;OCCGEOMETRY;_OCC64;_WIN32_WINNT=0x0502"
  				RuntimeLibrary="2"
  				EnableFunctionLevelLinking="true"
+ 				EnableEnhancedInstructionSet="1"
 @@ -484,8 +493,8 @@
  			/>
  			<Tool
@@ -209,7 +209,7 @@ index b42ed06..e8db69f 100644
 +				Name="VCCLCompilerTool"
 +				Optimization="0"
 +				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
-+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;OCCGEOMETRY;_WIN32_WINNT=0x0502"
 +				MinimalRebuild="true"
 +				BasicRuntimeChecks="3"
 +				RuntimeLibrary="3"
@@ -232,7 +232,7 @@ index b42ed06..e8db69f 100644
 +				OutputFile="$(OutDir)\$(ProjectName)d.dll"
 +				LinkIncremental="2"
 +				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
-+                ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++               ImportLibrary="$(OutDir)\$(ProjectName)d.lib"
 +				ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
 +				GenerateDebugInformation="true"
 +				SubSystem="2"
@@ -292,7 +292,7 @@ index b42ed06..e8db69f 100644
 +				Name="VCCLCompilerTool"
 +				Optimization="0"
 +				AdditionalIncludeDirectories="&quot;$(BUNDLE_PATH)\include&quot;;&quot;$(BUNDLE_PATH)\include\oce&quot;;&quot;$(SolutionDir)..\libsrc\include&quot;;&quot;$(SolutionDir)..\nglib&quot;;&quot;$(SolutionDir)..\&quot;"
-+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;Standard_EXPORT=OCCGEOMETRY;_WIN32_WINNT=0x0502"
++				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;NGLIB_EXPORTS;MSVC_EXPRESS;OCCGEOMETRY;_WIN32_WINNT=0x0502"
 +				MinimalRebuild="true"
 +				BasicRuntimeChecks="3"
 +				RuntimeLibrary="3"
@@ -315,7 +315,7 @@ index b42ed06..e8db69f 100644
 +				OutputFile="$(OutDir)\$(ProjectName)d.dll"
 +				LinkIncremental="0"
 +				AdditionalLibraryDirectories="&quot;$(BUNDLE_PATH)\lib&quot;"
-+				ImportLibrary="$(TargetDir)$(TargetName)d.lib"
++				ImportLibrary="$(OutDir)\$(ProjectName)d.lib"
 +                ManifestFile="$(OutDir)\$(TargetFileName).intermediate.manifest"
 +				GenerateDebugInformation="true"
 +				SubSystem="2"
