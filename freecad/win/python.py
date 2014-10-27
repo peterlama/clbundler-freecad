@@ -1,7 +1,7 @@
 from clbundler.formula import *
         
 class python(Formula):
-    version = "2.7.7"
+    version = "2.7.8"
     source = {
         "type":"archive", 
         "url":"https://www.python.org/ftp/python/{0}/Python-{0}.tar.xz".format(version)
