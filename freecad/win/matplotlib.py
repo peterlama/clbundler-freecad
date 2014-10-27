@@ -33,14 +33,25 @@ class matplotlib(Formula):
                        "sample_data = False\n"
                        "[gui_support]\n"
                        "pyside = True\n"
-                       "tkagg = False\n")
+                       "tkagg = False\n"
+                       "[rc_options]\n"
+                       "backend = Agg")
             f.write(content)
         
+        system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "six"])
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "pyparsing"])
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "python-dateutil"])
         system.run_cmd("python", ["setup.py", "install", "--single-version-externally-managed", "--root=" + self.context.install_dir, "--prefix=."])
         
         os.chdir(self.context.install_dir)
+        
+        #make paths relative
+        new_pth = ""
+        with open("Lib/site-packages/easy-install.pth") as f:
+            for line in f:
+                new_pth += line.replace(self.context.bundle_path.lower() + "\\bin\\lib\\site-packages", ".")
+        with open("Lib/site-packages/easy-install.pth", "w") as f:
+            f.write(new_pth)
         
         files = FileSet()
         files.add(["Lib/site-packages/*"], "bin/Lib/site-packages")
