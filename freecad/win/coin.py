@@ -11,7 +11,7 @@ class coin(Formula):
     def __init__(self, context, options={}):
         super(coin, self).__init__(context, options)
         
-        self.patches = ["vcproj_x64"]
+        self.patches = ["vcproj_x64", "macro_error"]
         if context.toolchain == "vc12":
             self.patches.append("config")
        
