@@ -10,16 +10,15 @@ class freecad(Formula):
             "boost",
             "coin",
             "eigen",
-            "f2c",
             "freetype",
             "matplotlib",
             "oce",
             "pcl",
             "pivy",
             "pyside",
+            "pyside_tools",
             "python",
             "qt",
-            "soqt",
             "xerces_c"
         )
 
