@@ -6,7 +6,7 @@ class freetype(Formula):
         "type":"archive", 
         "url":"http://sourceforge.net/projects/freetype/files/freetype2/2.5.2/ft252.zip"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
     
     def __init__(self, context, options={}):
         super(freetype, self).__init__(context, options)

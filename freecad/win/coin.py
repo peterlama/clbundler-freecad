@@ -6,27 +6,31 @@ class coin(Formula):
         "type":"hg", 
         "url":"https://bitbucket.org/Coin3D/coin"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(coin, self).__init__(context, options)
         
         self.patches = ["vcproj_x64", "macro_error"]
-        if context.toolchain == "vc12":
+        if vc_version(context.toolchain) > 10:
             self.patches.append("config")
        
     def build(self):
         vcproj = ""
         extra = []
-        vc_ver = int(vc_version(self.context.toolchain))
+        vc_ver = vc_version(self.context.toolchain)
+        msvc_dir = "msvc9"
         if vc_ver == 9:
             os.chdir("build\\msvc9")
             vcproj = "coin4.vcproj"
         elif vc_ver >= 10:
             os.chdir("build\\msvc10")
+            msvc_dir = "msvc10"
             vcproj = "coin4.vcxproj"
             if vc_ver != 10:
-                extra = ["/tv:{0}.0".format(vc_ver), "/p:PlatformToolset=v{0}0".format(vc_ver)]
+                extra = ["/p:PlatformToolset=v{0}0".format(vc_ver)]
+                if vc_ver == 12:
+                   extra.append("/tv:12.0")
         
         if "debug" in self.variant:
             vcbuild(self.context, vcproj, "DLL (Debug)", extra=extra)
@@ -35,10 +39,11 @@ class coin(Formula):
         
         self.context.env["COINDIR"] = self.context.install_dir
         
+        
         if "debug" in self.variant:
-            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "debug", "msvc9", "coin4"])
+            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "debug", msvc_dir, "coin4"])
         if "release" in self.variant:
-            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "release", "msvc9", "coin4"])
+            system.run_cmd("..\\misc\\install-sdk.bat", ["dll", "release", msvc_dir, "coin4"])
         
         os.chdir(self.context.install_dir)
         

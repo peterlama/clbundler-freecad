@@ -19,7 +19,7 @@ class perl(Formula):
             def64 = "WIN64=undef"
         
         system.run_cmd("nmake", ["install", "INST_TOP=" + self.context.install_dir + "\\Perl",
-                                 def64, "CCTYPE=MSVC" + vc_version(self.context.toolchain) + "0FREE"])
+                                 def64, "CCTYPE=MSVC{0}0FREE".format(vc_version(self.context.toolchain))])
         
         os.chdir(self.context.install_dir)
         

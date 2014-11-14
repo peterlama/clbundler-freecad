@@ -6,7 +6,7 @@ class swig(Formula):
         "type":"archive",
         "url":"http://sourceforge.net/projects/swig/files/swigwin/swigwin-{0}/swigwin-{0}.zip".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(swig, self).__init__(context, options)

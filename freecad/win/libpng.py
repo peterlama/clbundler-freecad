@@ -6,7 +6,7 @@ class libpng(Formula):
         "type":"archive", 
         "url":"http://sourceforge.net/projects/libpng/files/libpng16/1.6.13/lpng1613.7z"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(libpng, self).__init__(context, options)

@@ -6,7 +6,7 @@ class numpy(Formula):
         "type":"archive",
         "url":"http://sourceforge.net/projects/numpy/files/NumPy/{0}/numpy-{0}.zip".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(numpy, self).__init__(context, options)

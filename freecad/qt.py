@@ -8,12 +8,12 @@ class qt(Formula):
         "url":"http://download.qt-project.org/official_releases"\
               "/qt/4.8/{0}/qt-everywhere-opensource-src-{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
     
     def __init__(self, context, options={}):
         super(qt, self).__init__(context, options)
         
-        if context.toolchain == "vc12":
+        if vc_version(context.toolchain) > 10:
             self.patches.append("vc12")
         
     def build(self):

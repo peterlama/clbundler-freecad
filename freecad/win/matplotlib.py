@@ -8,7 +8,7 @@ class matplotlib(Formula):
         "url":"https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-{0}/"
               "matplotlib-{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(matplotlib, self).__init__(context, options)
@@ -18,10 +18,8 @@ class matplotlib(Formula):
         self.add_deps("setuptools", "numpy", "freetype", "libpng", "pyside")
         
     def build(self):
-        self.context.env["INCLUDE"] += self.context.bundle_path + "\\include;"
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include\\python2.7;"
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include\\freetype2;"
-        self.context.env["LIB"] += self.context.bundle_path + "\\lib;"
         
         tmp_site_packages = self.context.install_dir + "\\Lib\site-packages"
         makedirs(tmp_site_packages, exist_ok=True)
@@ -35,7 +33,9 @@ class matplotlib(Formula):
                        "pyside = True\n"
                        "tkagg = False\n"
                        "[rc_options]\n"
-                       "backend = Agg")
+                       "backend = Agg\n"
+                       "[directories]\n"
+                       "basedirlist = " + self.context.bundle_path)
             f.write(content)
         
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "six"])

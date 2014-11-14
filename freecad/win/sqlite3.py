@@ -6,7 +6,7 @@ class sqlite3(Formula):
         "type":"archive", 
         "url":"http://www.sqlite.org/2014/sqlite-amalgamation-3080500.zip"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(sqlite3, self).__init__(context, options)

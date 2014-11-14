@@ -6,7 +6,7 @@ class qhull(Formula):
         "type":"archive", 
         "url":"http://www.qhull.org/download/qhull-{0}-src.tgz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(qhull, self).__init__(context, options)

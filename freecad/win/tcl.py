@@ -6,7 +6,7 @@ class tcl(Formula):
         "type":"archive", 
         "url":"http://prdownloads.sourceforge.net/tcl/tcl{0}-src.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(tcl, self).__init__(context, options)

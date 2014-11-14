@@ -6,7 +6,7 @@ class setuptools(Formula):
         "type":"archive",
         "url":"https://pypi.python.org/packages/source/s/setuptools/setuptools-{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(setuptools, self).__init__(context, options)

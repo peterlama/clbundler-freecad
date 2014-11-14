@@ -7,7 +7,7 @@ class shiboken(Formula):
         "url":"http://download.qt-project.org/official_releases/pyside"
               "/shiboken-{0}.tar.bz2".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(shiboken, self).__init__(context, options)

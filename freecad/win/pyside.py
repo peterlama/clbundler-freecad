@@ -7,7 +7,7 @@ class pyside(Formula):
         "url":"http://download.qt-project.org/official_releases/pyside"
               "/pyside-qt4.8+{0}.tar.bz2".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(pyside, self).__init__(context, options)

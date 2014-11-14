@@ -7,7 +7,7 @@ class netgen(Formula):
         "url":"http://sourceforge.net/projects/netgen-mesher/files/netgen-mesher/"
               "{0}/netgen-{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(netgen, self).__init__(context, options)
@@ -20,7 +20,7 @@ class netgen(Formula):
         self.context.env["BUNDLE_PATH"] = self.context.bundle_path
         
         vcproj = "windows/nglib.vcproj"
-        if self.context.toolchain == "vc12":
+        if vc_version(self.context.toolchain) > 9:
             vcproj = vcproj_upgrade(vcproj)
         
         if "debug" in self.variant:

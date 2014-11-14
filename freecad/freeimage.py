@@ -6,7 +6,7 @@ class freeimage(Formula):
         "type":"archive", 
         "url":"http://downloads.sourceforge.net/freeimage/FreeImage3154.zip"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
     
     def __init__(self, context, options={}):
         super(freeimage, self).__init__(context, options)

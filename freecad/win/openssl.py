@@ -6,7 +6,7 @@ class openssl(Formula):
         "type":"archive", 
         "url":"http://www.openssl.org/source/openssl-{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(openssl, self).__init__(context, options)

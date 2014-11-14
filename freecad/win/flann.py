@@ -7,7 +7,7 @@ class flann(Formula):
         "url":"https://github.com/mariusmuja/flann.git",
         "revision":"04b4a56533"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(flann, self).__init__(context, options)

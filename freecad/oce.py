@@ -6,7 +6,7 @@ class oce(Formula):
         "type":"archive", 
         "url":"https://github.com/tpaviot/oce/archive/OCE-{0}.zip".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
     
     def __init__(self, context, options={}):
         super(oce, self).__init__(context, options)

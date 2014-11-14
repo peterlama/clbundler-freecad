@@ -6,7 +6,7 @@ class eigen(Formula):
         "type":"archive", 
         "url":"http://bitbucket.org/eigen/eigen/get/{0}.zip".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"], "gcc":["x64"]}
     
     def __init__(self, context, options={}):
         super(eigen, self).__init__(context, options)

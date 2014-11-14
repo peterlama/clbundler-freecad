@@ -7,7 +7,7 @@ class boost(Formula):
         "url":"http://sourceforge.net/projects/boost/files/boost/1.55.0"
               "/boost_1_55_0.zip"
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(boost, self).__init__(context, options)
@@ -27,7 +27,7 @@ class boost(Formula):
     def build(self):
         system.run_cmd("bootstrap.bat")
         
-        toolset = "toolset=msvc-" + vc_version(self.context.toolchain) + ".0"
+        toolset = "toolset=msvc-{0}.0".format(vc_version(self.context.toolchain))
         if self.variant == "release+debug":
             variants = "release,debug"
         else:

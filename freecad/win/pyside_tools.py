@@ -6,7 +6,7 @@ class pyside_tools(Formula):
         "type":"archive", 
         "url":"https://github.com/PySide/Tools/archive/{0}.tar.gz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(pyside_tools, self).__init__(context, options)

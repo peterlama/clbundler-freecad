@@ -6,7 +6,7 @@ class python(Formula):
         "type":"archive", 
         "url":"https://www.python.org/ftp/python/{0}/Python-{0}.tar.xz".format(version)
     }
-    supported = {"vc9":["x86", "x64"], "vc12":["x86", "x64"]}
+    supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
     def __init__(self, context, options={}):
         super(python, self).__init__(context, options)
@@ -14,7 +14,7 @@ class python(Formula):
         self.add_deps("openssl", "sqlite3", "tk")
         
         self.patches = ["pyconfig"]
-        if context.toolchain == "vc12":
+        if vc_version(context.toolchain) > 9:
             self.patches.append("vc12_upgrade")
         else:
             self.patches.extend(["eha_option", "vcproj_bundle_libs"])
@@ -24,11 +24,15 @@ class python(Formula):
         
         os.chdir("PCbuild")
         
+        vc_ver = "v{0}0".format(vc_version(self.context.toolchain))
+        
         #ignore errors because we don't need the modules that fail to build
         if "debug" in self.variant:
-            vcbuild(self.context, "pcbuild.sln", "Debug", ignore_errors=True)
+            vcbuild(self.context, "pcbuild.sln", "Debug",
+                    extra=["/p:PlatformToolset=" + vc_ver], ignore_errors=True)
         if "release" in self.variant:
-            vcbuild(self.context, "pcbuild.sln", "Release", ignore_errors=True)
+            vcbuild(self.context, "pcbuild.sln", "Release",
+                    extra=["/p:PlatformToolset=" + vc_ver], ignore_errors=True)
         
         os.chdir("..")
         
