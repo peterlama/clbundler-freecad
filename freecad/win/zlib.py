@@ -19,7 +19,7 @@ class zlib(Formula):
         if "release" in self.variant:
             vcbuild(self.context, "cmake_build\\zlib.sln", "Release")
         
-        vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
+        vcproj = "cmake_build\\INSTALL" + vcproj_ext(self.context.toolchain)
         if "debug" in self.variant:
             vcbuild(self.context, vcproj, "Debug")
         if "release" in self.variant:

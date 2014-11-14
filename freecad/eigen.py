@@ -15,7 +15,7 @@ class eigen(Formula):
         cmake(self.context)
         
         if self.context.toolchain.startswith("vc"):
-            vcproj = "cmake_build\\INSTALL" + vcproj_ext(vc_version(self.context.toolchain))
+            vcproj = "cmake_build\\INSTALL" + vcproj_ext(self.context.toolchain)
             vcbuild(self.context, vcproj, "Release")
         else:
             os.chdir("cmake_build")
