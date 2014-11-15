@@ -32,7 +32,6 @@ class libpng(Formula):
         files = FileSet()
         files.add(["include/png.h", "include/pngconf.h", "include/pnglibconf.h"], "include", category=Categories.build)
         files.add(["lib/*.lib"], "lib", category=Categories.build)
-        files.add(["lib/libpng"], "lib/cmake", category=Categories.build)
         files.add(["bin/libpng16.dll"], "bin", category=Categories.run)
         files.add(["bin/libpng16d.dll"], "bin", category=Categories.run_dbg)
         
