@@ -1,7 +1,7 @@
 from clbundler.formula import *
         
 class numpy(Formula):
-    version = "1.9.0"
+    version = "1.9.1"
     source = {
         "type":"archive",
         "url":"http://sourceforge.net/projects/numpy/files/NumPy/{0}/numpy-{0}.zip".format(version)
