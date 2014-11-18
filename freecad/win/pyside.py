@@ -31,12 +31,14 @@ class pyside(Formula):
         if "release" in self.variant:
             vcbuild(self.context, vcproj, "Release")
         
-        os.chdir(self.context.install_dir)
-        
         files = FileSet()
+        files.add(["cmake_build/libpyside/Debug/*.pdb"], "bin", category=Categories.run_dbg)
+        
+        os.chdir(self.context.install_dir)
         files.add(["include/*"], "include", category=Categories.build)
         files.add(["lib/cmake/*"], "lib/cmake", category=Categories.build)
         files.add(["lib/*.lib"], "lib", category=Categories.build)
+        files.add(["share/PySide"], "share", category=Categories.build)
         files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
         files.add(["bin/*_d.dll"], "bin", category=Categories.run_dbg)
         files.add(["bin/PySide/*[!d].pyd", "bin/PySide/*.py"], "bin/PySide", category=Categories.run)

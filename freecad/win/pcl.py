@@ -31,9 +31,9 @@ class pcl(Formula):
         if "release" in self.variant:
             vcbuild(self.context, vcproj, "Release")
         
-        os.chdir(self.context.install_dir)
-        
         files = FileSet()
+        files.add(["cmake_build/bin/*.pdb"], "bin", category=Categories.run_dbg)
+        os.chdir(self.context.install_dir)
         files.add(["include/*"], "include", category=Categories.build)
         files.add(["lib/*.lib"], "lib", category=Categories.build)       
         files.add(["bin/*[!d].dll"], "bin", category=Categories.run)

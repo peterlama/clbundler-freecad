@@ -48,7 +48,7 @@ class python(Formula):
         files.add(["python27.lib", "python27_d.lib"], "lib", category=Categories.build)
         files.add(["python.exe", "*[!d].dll"], "bin", category=Categories.run)
         files.add(["*[!d].pyd"], "bin/DLLs", category=Categories.run)
-        files.add(["python_d.exe", "*_d.dll"], "bin", category=Categories.run_dbg)
+        files.add(["python_d.exe", "*_d.dll", "python27_d.pdb"], "bin", category=Categories.run_dbg)
         files.add(["*_d.pyd"], "bin/DLLs", category=Categories.run_dbg)
         
         return files

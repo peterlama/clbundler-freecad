@@ -40,6 +40,6 @@ class xerces_c(Formula):
         files.add(["Release/*.lib"], "lib", category=Categories.build)
         files.add(["Debug/*.lib"], "lib", category=Categories.build)
         files.add(["Release/*.dll"], "bin", category=Categories.run)
-        files.add(["Debug/*.dll"], "bin", category=Categories.run_dbg)
+        files.add(["Debug/*.dll", "Debug/*.pdb"], "bin", category=Categories.run_dbg)
         
         return files

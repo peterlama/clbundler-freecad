@@ -51,7 +51,7 @@ class coin(Formula):
         files.add(["include/*"], "include", category=Categories.build)
         files.add(["lib/*"], "lib", category=Categories.build)
         files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
-        files.add(["bin/*d.dll"], "bin", category=Categories.run_dbg)
+        files.add(["bin/*d.*"], "bin", category=Categories.run_dbg)
         
         return files
         

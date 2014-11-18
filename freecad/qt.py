@@ -34,6 +34,7 @@ class qt(Formula):
         configure_options = ["-opensource",
                              "-confirm-license",
                              "-platform", mkspec,
+                             "-webkit",
                              "-no-qt3support",
                              "-no-phonon",
                              "-no-multimedia",
@@ -85,7 +86,7 @@ class qt(Formula):
             files.add(["lib/*.lib"], "lib", category=Categories.build)
             files.add(["bin/*[!d]?.dll", "bin/*.exe"], "bin", category=Categories.run)
             files.add(["bin/*d?.dll"], "bin", category=Categories.run_dbg)
-            
+            files.add(["lib/*.pdb"], "bin", category=Categories.run_dbg)
             files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
             files.add(["plugins/**/*d?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
         else:

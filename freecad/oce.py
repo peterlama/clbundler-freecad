@@ -58,9 +58,9 @@ class oce(Formula):
         files.add(["share/oce*"], "share", category=Categories.run)
 
         if self.context.toolchain.startswith("vc"):
-            files.add(["lib/*.lib", "lib/*.pdb"], "lib", category=Categories.build)       
+            files.add(["lib/*.lib"], "lib", category=Categories.build)
             files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
-            files.add(["bin/*d.dll"], "bin", category=Categories.run_dbg)
+            files.add(["bin/*d.dll", "lib/*.pdb"], "bin", category=Categories.run_dbg)
         else:
             files.add(["lib/*"], "lib", exclude=["lib/cmake"], category=Categories.run)
         

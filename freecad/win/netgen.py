@@ -38,7 +38,7 @@ class netgen(Formula):
         
         files.add(["Debug(OCC)/*.lib", "Release(OCC)/*.lib"], "lib", category=Categories.build)
         files.add(["Release(OCC)/*.dll"], "bin", category=Categories.run)
-        files.add(["Debug(OCC)/*.dll"], "bin", category=Categories.run_dbg)
+        files.add(["Debug(OCC)/*.dll", "Debug(OCC)/nglib.pdb"], "bin", category=Categories.run_dbg)
         
         return files
         
