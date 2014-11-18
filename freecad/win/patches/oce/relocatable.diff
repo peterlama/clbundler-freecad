@@ -1,0 +1,49 @@
+--- a/CMakeLists.txt	Mon Jul 21 12:50:10 2014
++++ b/CMakeLists.txt	Sun Nov 16 09:55:20 2014
+@@ -275,6 +275,8 @@
+ 		${OCE_USE_MSVC_EXPRESS} )
+ endif(MSVC_IDE)
+ 
++link_directories("$ENV{CMAKE_PREFIX_PATH}/lib")
++
+ set_directory_properties(PROPERTIES COMPILE_DEFINITIONS_RELEASE NDEBUG)
+ set_directory_properties(PROPERTIES COMPILE_DEFINITIONS_MINSIZEREL NDEBUG)
+ set_directory_properties(PROPERTIES COMPILE_DEFINITIONS_RELWITHDEBINFO  NDEBUG)
+@@ -415,6 +417,8 @@
+ 	if(CMAKE_CONFIGURATION_TYPES OR NMAKE)
+ 		find_library(FREETYPE_LIBRARY_DEBUG freetyped "Location of freetype debug library")
+ 	endif(CMAKE_CONFIGURATION_TYPES OR NMAKE)
++    set(FREETYPE_LIBRARIES freetype.lib)
++    set(FREETYPE_LIBRARY_DEBUG freetyped.lib)
+ endif(OCE_REQUIRES_FREETYPE)
+ 
+ if(OCE_VISUALISATION)
+@@ -428,6 +432,9 @@
+ 			endif(CMAKE_CONFIGURATION_TYPES OR NMAKE)
+ 		endif(FREEIMAGE_INCLUDE_DIR)
+ 		mark_as_advanced(FREEIMAGE_INCLUDE_DIR FREEIMAGE_LIBRARY)
++        set(FREEIMAGE_LIBRARY FreeImage.lib)
++        set(FREEIMAGE_LIBRARY_DEBUG FreeImaged.lib)
++        
+ 		if(WIN32)
+ 			if(FREEIMAGE_INCLUDE_DIR)
+ 				find_library( FREEIMAGEPLUS_LIBRARY freeimageplus "Path to the freeimageplus library" )
+@@ -436,6 +443,9 @@
+ 				endif(CMAKE_CONFIGURATION_TYPES OR NMAKE)
+ 			endif(FREEIMAGE_INCLUDE_DIR)
+ 			mark_as_advanced(FREEIMAGEPLUS_LIBRARY)
++            
++            set(FREEIMAGEPLUS_LIBRARY FreeImagePlus.lib)
++            set(FREEIMAGEPLUS_LIBRARY_DEBUG FreeImagePlusd.lib)
+ 		endif(WIN32)
+ 	endif(OCE_WITH_FREEIMAGE)
+ 
+@@ -511,6 +521,8 @@
+ endif(OCE_DATAEXCHANGE)
+ 
+ if(OCE_DRAW)
++    set(TCL_LIBRARY tcl86.lib)
++    set(TK_LIBRARY tk86.lib)
+ 	if (APPLE AND NOT OCE_OSX_USE_COCOA)
+ 		# under OSX-X11, should use a X11 based TCL/TK, for instance fink's implementation
+ 		set(FINK_INSTALL_PATH /sw)
