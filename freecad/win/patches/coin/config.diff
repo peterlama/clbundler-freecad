@@ -1,6 +1,7 @@
---- a/build/msvc10/include/Inventor/system/inttypes.h	Tue Mar 02 06:20:09 2010
-+++ b/build/msvc10/include/Inventor/system/inttypes.h	Sat Mar 15 11:13:23 2014
-@@ -70,7 +70,7 @@
+diff -r e3dbc1f8f27a build/msvc10/include/Inventor/system/inttypes.h
+--- a/build/msvc10/include/Inventor/system/inttypes.h	Sat Oct 11 21:45:41 2014 +0100
++++ b/build/msvc10/include/Inventor/system/inttypes.h	Mon Nov 17 19:50:37 2014 -0800
+@@ -79,7 +79,7 @@
  /* The <inttypes.h> header file. */
  /* #undef HAVE_INTTYPES_H */
  /* The <stdint.h> header file. */
@@ -9,7 +10,7 @@
  /* The <sys/types.h> header file. */
  #define HAVE_SYS_TYPES_H 1
  /* The <stddef.h> header file. */
-@@ -79,27 +79,27 @@
+@@ -88,27 +88,56 @@
  
  /* If the system defines any of the types "on it's own", the
     respective #define will be set below. */
@@ -21,16 +22,47 @@
 -/* #undef HAVE_UINT32_T */
 -/* #undef HAVE_INT64_T */
 -/* #undef HAVE_UINT64_T */
-+#define HAVE_INT8_T 1
-+#define HAVE_UINT8_T 1
-+#define HAVE_INT16_T 1
-+#define HAVE_UINT16_T 1
-+#define HAVE_INT32_T 1
-+#define HAVE_UINT32_T 1
-+#define HAVE_INT64_T 1
-+#define HAVE_UINT64_T 1
- #define HAVE_INTPTR_T 1
- #define HAVE_UINTPTR_T 1
+-#define HAVE_INTPTR_T 1
+-#define HAVE_UINTPTR_T 1
++#ifndef HAVE_INT8_T
++#define HAVE_INT8_T
++#endif
++
++#ifndef HAVE_UINT8_T
++#define HAVE_UINT8_T
++#endif
++
++#ifndef HAVE_INT16_T
++#define HAVE_INT16_T
++#endif
++
++#ifndef HAVE_UINT16_T
++#define HAVE_UINT16_T
++#endif
++
++#ifndef HAVE_INT32_T
++#define HAVE_INT32_T
++#endif
++
++#ifndef HAVE_UINT32_T
++#define HAVE_UINT32_T
++#endif
++
++#ifndef HAVE_INT64_T
++#define HAVE_INT64_T
++#endif
++
++#ifndef HAVE_UINT64_T
++#define HAVE_UINT64_T
++#endif
++
++#ifndef HAVE_INTPTR_T
++#define HAVE_INTPTR_T
++#endif
++
++#ifndef HAVE_UINTPTR_T
++#define HAVE_UINTPTR_T
++#endif
  
  /* The type which the configure script found to match the given
     bitwidth. */
@@ -52,7 +84,7 @@
 +#define COIN_UINT64_T uint64_t
  #define COIN_INTPTR_T intptr_t
  #define COIN_UINTPTR_T uintptr_t
-
+ 
 --- build\msvc10\src\config-debug.h	Tue Mar 02 06:20:09 2010
 +++ build\msvc10\src\config-debug_new.h	Sat Mar 15 11:10:43 2014
 @@ -23,16 +23,16 @@

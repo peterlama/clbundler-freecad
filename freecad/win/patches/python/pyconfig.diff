@@ -1,6 +1,5 @@
-diff -urN python-2.7.7/PC/pyconfig.h python-2.7.7_new/PC/pyconfig.h
---- python-2.7.7/PC/pyconfig.h	Sat May 31 11:58:40 2014
-+++ python-2.7.7_new/PC/pyconfig.h	Mon Jun 16 23:15:03 2014
+--- a/PC/pyconfig.h	Mon Nov 17 20:12:43 2014
++++ b/PC/pyconfig.h	Mon Nov 17 20:22:06 2014
 @@ -106,6 +106,11 @@
  /* Microsoft C defines _MSC_VER */
  #ifdef _MSC_VER
@@ -13,7 +12,22 @@ diff -urN python-2.7.7/PC/pyconfig.h python-2.7.7_new/PC/pyconfig.h
  /* We want COMPILER to expand to a string containing _MSC_VER's *value*.
   * This is horridly tricky, because the stringization operator only works
   * on macro arguments, and doesn't evaluate macros passed *as* arguments.
-@@ -396,39 +401,70 @@
+@@ -384,8 +389,12 @@
+    If some compiler does not provide them, modify the #if appropriately. */
+ #if defined(_MSC_VER)
+ #if _MSC_VER > 1300
+-#define HAVE_UINTPTR_T 1
+-#define HAVE_INTPTR_T 1
++#ifndef HAVE_UINTPTR_T
++#define HAVE_UINTPTR_T
++#endif 
++#ifndef HAVE_INTPTR_T
++#define HAVE_INTPTR_T
++#endif
+ #else
+ /* VC6, VS 2002 and eVC4 don't support the C99 LL suffix for 64-bit integer literals */
+ #define Py_LL(x) x##I64
+@@ -396,39 +405,70 @@
  
  /* define signed and unsigned exact-width 32-bit and 64-bit types, used in the
     implementation of Python long integers. */
