@@ -41,6 +41,18 @@ class matplotlib(Formula):
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "six"])
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "pyparsing"])
         system.run_cmd("easy_install", ["--install-dir=" + tmp_site_packages, "python-dateutil"])
+        
+        if "debug" in self.variant:
+            self.context.env["LINK"] = "freetyped.lib "
+            self.context.env["LINK"] += "libpng16d.lib "
+            
+            system.run_cmd("python", ["setup.py", "build", "--debug"])
+        if "release" in self.variant:
+            self.context.env["LINK"] = "freetype.lib "
+            self.context.env["LINK"] += "libpng16.lib "
+            
+            system.run_cmd("python", ["setup.py", "build"])
+        
         system.run_cmd("python", ["setup.py", "install", "--single-version-externally-managed", "--root=" + self.context.install_dir, "--prefix=."])
         
         os.chdir(self.context.install_dir)

@@ -1,0 +1,15 @@
+--- a/setup.py	Sun Nov 23 13:11:00 2014
++++ b/setup.py	Sun Nov 23 13:07:23 2014
+@@ -368,8 +368,10 @@
+                 CPP_FLAGS = "-I" + quote(INCLUDE_DIR) + " " + \
+                             "-I" + quote(os.path.join(os.getenv("COINDIR"), "include", "Inventor", "annex")) + \
+                             " /DCOIN_DLL /wd4244 /wd4049"
+-                # aquire highest non-debug Coin library version
+-                LDFLAGS_LIBS = quote(max(glob.glob(os.path.join(os.getenv("COINDIR"), "lib", "coin?.lib")))) + " "
++                # acquire highest Coin library version
++                coin_lib = "coin?.lib"
++                if self.debug: coin_lib = "coin?d.lib"
++                LDFLAGS_LIBS = quote(max(glob.glob(os.path.join(os.getenv("COINDIR"), "lib", coin_lib)))) + " "
+                 if module == "sowin":
+                     CPP_FLAGS += " /DSOWIN_DLL"
+                     LDFLAGS_LIBS += quote(os.path.join(os.getenv("COINDIR"), "lib", "sowin1.lib"))

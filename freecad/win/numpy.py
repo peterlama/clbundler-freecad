@@ -16,8 +16,10 @@ class numpy(Formula):
     def build(self):
         self.context.env["INCLUDE"] += self.context.bundle_path + "\\include\python2.7;"
         self.context.env["LIB"] += self.context.bundle_path + "\\lib;"
-        system.run_cmd("python", ["setup.py", "build"])
-        system.run_cmd("python", ["setup.py", "install", "--prefix=" + self.context.install_dir])
+        if "debug" in self.variant:
+            distutils(self.context, debug=True)
+        if "release" in self.variant:
+            distutils(self.context)
         
         os.chdir(self.context.install_dir)
         

@@ -13,13 +13,16 @@ class pivy(Formula):
         
         self.add_deps("python", "coin", "swig")
         
-        self.patches = ["no_gui"]
+        self.patches = ["no_gui", "link_debug"]
         
     def build(self):
         self.context.env["PATH"] += os.path.join(self.context.bundle_path, "bin", "swig")
         self.context.env["COINDIR"] = self.context.bundle_path
         
-        distutils(self.context)
+        if "debug" in self.variant:
+            distutils(self.context, debug=True)
+        if "release" in self.variant:
+            distutils(self.context)
         
         os.chdir(self.context.install_dir)
         

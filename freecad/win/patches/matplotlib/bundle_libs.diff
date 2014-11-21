@@ -5,7 +5,7 @@
              default_library_dirs=[
                  'freetype2/lib'],
 -            default_libraries=['freetype', 'z'])
-+            default_libraries=['freetype'])
++            default_libraries=[])
  
  
  
@@ -14,7 +14,7 @@
          ext = make_extension('matplotlib._png', sources)
          pkg_config.setup_extension(
 -            ext, 'libpng', default_libraries=['png', 'z'],
-+            ext, 'libpng', default_libraries=['libpng16'],
++            ext, 'libpng', default_libraries=[],
              alt_exec='libpng-config --ldflags')
          Numpy().add_flags(ext)
          CXX().add_flags(ext)
