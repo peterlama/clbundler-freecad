@@ -14,6 +14,8 @@ class matplotlib(Formula):
         super(matplotlib, self).__init__(context, options)
         
         self.patches = ["bundle_libs"]
+        if vc_version(self.toolchain) > 10:
+            self.patches.append("cpp11")
         
         self.add_deps("setuptools", "numpy", "freetype", "libpng", "pyside")
         

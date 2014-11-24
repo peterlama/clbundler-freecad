@@ -1,0 +1,22 @@
+diff -ur ../matplotlib-1.4.2_old/src/_path.cpp src/_path.cpp
+--- a/src/_path.cpp	Mon Oct 20 16:14:39 2014
++++ b/src/_path.cpp	Sun Nov 23 23:21:35 2014
+@@ -6,6 +6,7 @@
+ 
+ #include <limits>
+ #include <math.h>
++#include <algorithm>
+ 
+ #include "CXX/Extensions.hxx"
+ 
+diff -ur ../matplotlib-1.4.2_old/src/ft2font.cpp src/ft2font.cpp
+--- a/src/ft2font.cpp	Mon Oct 20 16:14:39 2014
++++ b/src/ft2font.cpp	Sun Nov 23 22:57:14 2014
+@@ -3,6 +3,7 @@
+ #include "ft2font.h"
+ #include "mplutils.h"
+ #include <sstream>
++#include <algorithm>
+ 
+ #include "file_compat.h"
+ 
