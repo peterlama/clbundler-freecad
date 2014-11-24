@@ -1,10 +1,10 @@
 from clbundler.formula import *
         
 class libpng(Formula):
-    version = "1.6.13"
+    version = "1.6.15"
     source = {
         "type":"archive", 
-        "url":"http://sourceforge.net/projects/libpng/files/libpng16/1.6.13/lpng1613.7z"
+        "url":"http://sourceforge.net/projects/libpng/files/libpng16/1.6.15/lpng1615.7z"
     }
     supported = {"vc9":["x86", "x64"], "vc11":["x86", "x64"], "vc12":["x86", "x64"]}
     
