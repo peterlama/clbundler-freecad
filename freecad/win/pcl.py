@@ -1,4 +1,5 @@
 from clbundler.formula import *
+import glob
         
 class pcl(Formula):
     version = "1.7.2"
@@ -32,11 +33,13 @@ class pcl(Formula):
             vcbuild(self.context, vcproj, "Release")
         
         files = FileSet()
-        files.add(["cmake_build/bin/*.pdb"], "bin", category=Categories.run_dbg)
+        #only copy pdb files of dlls
+        pdb_files = [p.split(".dll")[0] + ".pdb" for p in glob.glob("cmake_build/bin/*debug.dll")]
+        files.add(pdb_files, "bin", category=Categories.run_dbg)
         os.chdir(self.context.install_dir)
         files.add(["include/*"], "include", category=Categories.build)
         files.add(["lib/*.lib"], "lib", category=Categories.build)       
-        files.add(["bin/*[!d].dll"], "bin", category=Categories.run)
+        files.add(["bin/*[!d].dll"], "bin", exclude=["bin/msvc*.dll"], category=Categories.run)
         files.add(["bin/*d.dll"], "bin", category=Categories.run_dbg)
         
         return files
