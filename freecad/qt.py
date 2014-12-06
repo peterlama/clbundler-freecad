@@ -87,8 +87,8 @@ class qt(Formula):
             files.add(["bin/*[!d]?.dll", "bin/*.exe"], "bin", category=Categories.run)
             files.add(["bin/*d?.dll"], "bin", category=Categories.run_dbg)
             files.add(["lib/*.pdb"], "bin", category=Categories.run_dbg)
-            files.add(["plugins/**/*[!d]?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
-            files.add(["plugins/**/*d?.dll"], "bin/QtPlugins", plugins_exclude, category=Categories.run)
+            files.add(["plugins/**/*[!d]?.dll"], "bin", plugins_exclude, category=Categories.run)
+            files.add(["plugins/**/*d?.dll", "plugins/**/*d?.pdb"], "bin", plugins_exclude, category=Categories.run_dbg)
         else:
             configure_options.append("-release")
             if self.context.os_name == "mac":
@@ -106,7 +106,7 @@ class qt(Formula):
             files.add(["plugins/*"], "lib/QtPlugins", plugins_exclude)
         
         with open("qt.conf", "w") as f:
-            f.write("[Paths]\nPrefix = ..\nPlugins = bin/QtPlugins\n")
+            f.write("[Paths]\nPrefix = ..")
         
         files.add(["qt.conf"], "bin")
         
