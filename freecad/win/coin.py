@@ -14,6 +14,8 @@ class coin(Formula):
         self.patches = ["vcproj_x64", "macro_error"]
         if vc_version(context.toolchain) > 10:
             self.patches.append("config")
+            
+        self.add_deps("freetype")
        
     def build(self):
         vcproj = ""
